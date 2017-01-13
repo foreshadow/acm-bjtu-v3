@@ -1,0 +1,72 @@
+user
+  id
+  nickname
+  email
+  verify
+  password
+  remember
+  handle
+codeforces
+  <cache>
+article
+  id
+  user_id
+  creator
+  create_at
+  update_at
+  title
+  category
+  body
+  renderer
+  toc
+  public
+problem
+  id
+  public
+  title
+  time
+  memory
+  description
+  input
+  output
+  sample
+  hint
+  source
+submission
+  id
+  problem_id
+  user_id
+  contest_id
+  create_at
+  language
+  verdict
+  time
+  memory
+  rejudge
+contest
+  id
+  name
+  user_id
+  time
+  body
+contest_problem
+  contest_id
+  problem_id
+  index
+  alias
+onsite_contest
+  id
+  name
+  site
+  time
+pastebin
+  id
+  user_id
+  create_at
+  body
+report
+  id
+  user_id
+  create_at
+  title
+  body

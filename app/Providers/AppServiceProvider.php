@@ -13,7 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \Blade::directive('icon', function ($expression) {
+            $expression = str_replace('\'', '', $expression);
+            return "<span class=\"glyphicon glyphicon-$expression\"></span>&emsp;";
+        });
     }
 
     /**

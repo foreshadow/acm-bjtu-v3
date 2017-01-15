@@ -23,7 +23,7 @@ class TOC
             $t = [0, 0, 0, 0, 0, 0, 0];
             $l = 0;
             foreach ($matches[1] as &$v) {
-                $h = $v[0] - 1;
+                $h = $v[0];
                 if ($h <= $l) {
                     $t[$h] += 1;
                 } else if ($h > $l) {

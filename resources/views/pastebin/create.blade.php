@@ -9,7 +9,7 @@
           Pastebin
         </div>
         <div class="panel-body">
-          <form action="?" method="post">
+          <form action="/pastebin" method="post">
             {{ csrf_field() }}
             <div class="form-group">
               <label>标题</label>
@@ -19,7 +19,7 @@
               <label>内容</label>
               <textarea class="form-control" name="body" rows="15"></textarea>
             </div>
-            <button class="btn btn-primary" type="submit">提交</button>
+            <button class="btn btn-sm btn-primary" type="submit">@icon('send')提交</button>
           </form>
         </div>
       </div>

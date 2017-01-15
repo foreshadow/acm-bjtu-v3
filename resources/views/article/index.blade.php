@@ -12,28 +12,31 @@
             {!! implode('<br>', $errors->all()) !!}
           </div>
           @endif
-          <a href="{{ url('article/create') }}" class="btn btn-primary">写文章</a>
-          @foreach ($articles as $article)
-          <hr>
-          <div class="pull-right">
-            <a href="{{ url('article/'.$article->id . '/edit') }}" class="btn btn-success">编辑</a>
-            <form action="{{ url('article/' . $article->id) }}" method="POST" style="display: inline;">
-              {{ method_field('DELETE') }}
-              {{ csrf_field() }}
-              <button type="submit" class="btn btn-danger">删除</button>
-            </form>
-          </div>
-          <div class="article">
-            <h4>
-              <a href="{{ url('article/' . $article->id) }}">{{ $article->title }}</a>
-              <small>{{ $article->info() }}</small>
-            </h4>
-            <div class="content">
-              <?php echo $article->text(3); ?>
-            </div>
-          </div>
-          @endforeach
+          <a href="/article/create" class="btn btn-sm btn-success">@icon('plus')新建</a>
         </div>
+        <ul class="list-group">
+          @foreach ($articles as $article)
+          <li class="list-group-item">
+            <div class="pull-right">
+              <a href="/article/{{ $article->id }}/edit" class="btn btn-sm btn-primary">@icon('pencil')编辑</a>
+              <form action="/article/{{ $article->id }}" method="POST" style="display: inline;">
+                {{ method_field('DELETE') }}
+                {{ csrf_field() }}
+                <button type="submit" class="btn btn-sm btn-danger">@icon('remove')删除</button>
+              </form>
+            </div>
+            <div class="article">
+              <h4>
+                <a href="/article/{{ $article->id }}">{{ $article->title }}</a>
+                <small>{{ $article->info() }}</small>
+              </h4>
+              <div class="content">
+                <?php echo $article->text(3); ?>
+              </div>
+            </div>
+          </li>
+          @endforeach
+        </ul>
       </div>
     </div>
   </div>

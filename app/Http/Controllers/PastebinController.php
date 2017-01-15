@@ -14,7 +14,7 @@ class PastebinController extends Controller
 
     public function index()
     {
-
+        return view('pastebin.index')->with('snippets', Snippet::where('user_id', '=', \Auth::id())->get());
     }
 
     public function create()

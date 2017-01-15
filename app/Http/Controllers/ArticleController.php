@@ -14,7 +14,7 @@ class ArticleController extends Controller
 
     public function index()
     {
-        return view('article.index')->with('articles', Article::where('user_id', '=', \Auth::user()->id)->get());
+        return view('article.index')->with('articles', Article::where('user_id', '=', \Auth::id())->get());
     }
 
     public function create()
@@ -36,6 +36,7 @@ class ArticleController extends Controller
         $article->renderer = $request->get('renderer');
         $article->toc = ($request->get('toc') or false);
         $article->label = ($request->get('label') or false);
+        $article->public = ($request->get('public') or false);
 
         if ($article->save()) {
             return redirect('article');
@@ -47,7 +48,7 @@ class ArticleController extends Controller
     public function show($id)
     {
         $article = Article::find($id);
-        if ($article->public || (Auth::check() && Auth::user()->id == $article->user_id) {
+        if ($article->public || (\Auth::check() && \Auth::id() == $article->user_id)) {
             return view('article.show')->with('article', $article);
         } else {
             redirect('/');
@@ -77,6 +78,7 @@ class ArticleController extends Controller
         $article->renderer = $request->get('renderer');
         $article->toc = ($request->get('toc') or false);
         $article->label = ($request->get('label') or false);
+        $article->public = ($request->get('public') or false);
 
         if ($article->save()) {
             return redirect('article');

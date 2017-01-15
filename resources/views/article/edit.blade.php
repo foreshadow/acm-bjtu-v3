@@ -15,28 +15,36 @@
             </div>
           @endif
 
-          <form action="{{ url('article/' . $article->id) }}" method="POST">
-            {!! csrf_field() !!}
+          {{ Form::open(['url' => 'article/' . $article->id, 'method' => 'post']) }}
             {{ method_field('PUT') }}
             <input type="text" name="title" class="form-control" required="required" placeholder="标题" value="{{ $article->title }}">
             <br>
-            <textarea name="body" rows="18" class="form-control" required="required" placeholder="内容">{{ $article->body }}</textarea>
+            <textarea name="body" rows="10" class="form-control" required="required" placeholder="内容">{{ $article->body }}</textarea>
             <br>
-            <div class="col-md-6">
+            <div class="col-md-4">
+              @icon('file')
               {{ Form::label('', '内容格式') }}
-              {{ Form::select('renderer', array('markdown' => 'markdown', 'html' => 'html'), $article->renderer, ['class' => 'form-control']) }}
-              <span class="help-block">如果你没有使用HTML，建议选择markdown</span>
+              {{ Form::select('renderer', array('markdown' => 'markdown', 'html' => 'html', 'plaintext' => 'plain text'), $article->renderer, ['class' => 'form-control']) }}
+              <span class="help-block"><small>尝试一下markdown吧！</small></span>
             </div>
-            <div class="col-md-6">
+            <div class="form-group col-md-8">
               {{ Form::checkbox('toc', '1', $article->toc) }}
+              @icon('list')
               {{ Form::label('', '目录') }}
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              {{ Form::checkbox('label', '1', $article->label) }}
-              {{ Form::label('', '数字节标题') }}
+              <span class="help-block" style="display: initial;"><small>包含标题元素的导航窗格。</small></span>
               <br>
-              <button class="btn btn-primary pull-right">修改并发布</button>
+              {{ Form::checkbox('label', '1', $article->label) }}
+              <small>1.1</small>
+              {{ Form::label('', '数字节标题') }}
+              <span class="help-block" style="display: initial;"><small>markdown格式中，所有标题会按顺序加上形如1.1的数字。</small></span>
+              <br>
+              {{ Form::checkbox('public', '1', $article->public) }}
+              @icon('eye-open')
+              {{ Form::label('', '公开') }}
+              <span class="help-block" style="display: initial;"><small>公开后你的文章将对所有人可见，并且有可能出现在首页最近列表中。</small></span>
+              <button class="btn btn-sm btn-primary pull-right">@icon('send')发布</button>
             </div>
-          </form>
+          {{ Form::close() }}
 
         </div>
       </div>

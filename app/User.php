@@ -26,4 +26,24 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function link()
+    {
+        return sprintf('<a href="/user/%s">%s</a>', $this->id, $this->name);
+    }
+
+    public function url()
+    {
+        return '/img/' . $this->avatar;
+    }
+
+    public function articles()
+    {
+        return $this->hasmany('App\Article');
+    }
+
+    public function publicArticles()
+    {
+        return $this->articles()->where('public', true);
+    }
 }

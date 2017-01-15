@@ -14,10 +14,10 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3>{{ $article->title }}</h3>
-            @if (Auth::check() && Auth::user()->id == $article->user_id)
-            <a href="{{ url('article/'.$article->id . '/edit') }}" class="btn btn-sm btn-success pull-right">编辑</a>
+            @if (Auth::check() && Auth::id() == $article->user_id)
+            <a href="/article/{{ $article->id }}/edit" class="btn btn-sm btn-success pull-right">@icon('pencil')编辑</a>
             @endif
-            <p>{{ $article->creator->name }} <small>{{ $article->info() }}</small></p>
+            <p>{!! $article->creator->link() !!} <small>{{ $article->info() }}</small></p>
           </div>
           <div class="panel-body">
             @if ($article->renderer == 'markdown')

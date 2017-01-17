@@ -7,21 +7,39 @@
       <div class="panel panel-default">
         <!-- <div class="panel-heading"></div> -->
         <div class="panel-body">
-          <div class="pull-right" style="width: 150px; height: 150px; margin-left: 15px;">
-            <img src="{{ $user->url() }}" style="max-width: 150px; max-height: 150px; border-radius: 3px;">
+          <div class="pull-right" style="width: 128px; height: 128px; margin-left: 15px;">
+            <img src="{{ $user->url() }}" style="max-width: 128px; max-height: 128px; border-radius: 3px;">
           </div>
           <div>
             @if (Auth::id() == $user->id)
             <a href="/user/{{ $user->id }}/edit" class="btn btn-sm btn-primary pull-right">@icon('pencil')修改</a>
             @endif
-            <h3>{{ $user->name }}</h3>
-            <p><small>{{ $user->email }}</small></p>
-            <p>{{ $user->realname }}</p>
+            <h3>
+              {{ $user->name }}
+              <small>
+                @role('admin | superadmin')
+                @foreach ($user->roles as $role)
+                <span class="label label-info">{{ $role->name }}</span>
+                @endforeach
+                @endrole
+              </small>
+            </h3>
+            <p>
+              {{ $user->realname }}
+              <small>{{ $user->email }}</small>
+            </p>
             <p>{{ $user->location1 }} {{ $user->location2 }}</p>
-            <p><span class="label label-primary">Codeforces handle</span> {{ $user->handle }}</p>
+            <label>Codeforces handle: </label> {{ $user->handle }}</p>
             <hr>
-            <p>最后登录于 {{ App\Functions::relative_time($user->updated_at->timestamp - time(), true) }}</p>
-            <p>注册于 {{ App\Functions::relative_time($user->created_at->timestamp - time(), true) }}</p>
+            <p>
+              @if ($user->online())
+              <strong><span class="text-success">在线</span></strong>
+              @else
+              最后登录于 {{ App\Functions::relative_time($user->updated_at->timestamp - time(), true) }}
+              @endif
+              <br>
+              注册于 {{ App\Functions::relative_time($user->created_at->timestamp - time(), true) }}
+            </p>
           </div>
         </div>
         <ul class="list-group">

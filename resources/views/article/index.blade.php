@@ -22,7 +22,7 @@
               <form action="/article/{{ $article->id }}" method="POST" style="display: inline;">
                 {{ method_field('DELETE') }}
                 {{ csrf_field() }}
-                <button type="submit" class="btn btn-sm btn-danger">@icon('remove')删除</button>
+                <button type="submit" class="btn btn-sm btn-danger">@icon('trash')删除</button>
               </form>
             </div>
             <div class="article">

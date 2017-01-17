@@ -1,5 +1,4 @@
 <?php
-use App\Article;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,15 +11,18 @@ use App\Article;
 |
 */
 
+use App\Article;
+use App\Snippet;
+
 Route::get('/', function () {
-    return view('index')->with('articles', App\Article::all());
+    return view('index')->with('articles', Article::all());
 });
 
 Auth::routes();
 
 Route::get('dashboard', function () {
-    return view('dashboard')->with('articles', App\Article::where('user_id', '=', \Auth::id())->orderBy('created_at', 'desc')->get())
-                            ->with('snippets', App\Snippet::where('user_id', '=', \Auth::id())->orderBy('created_at', 'desc')->get());
+    return view('dashboard')->with('articles', Article::where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get())
+                            ->with('snippets', Snippet::where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get());
 });
 
 Route::group(['prefix' => 'oj', 'namespace' => 'OJ'], function () {

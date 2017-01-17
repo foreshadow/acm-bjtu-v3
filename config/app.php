@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'acm.bjtu',
+    'name' => 'acm.infinitys',
 
     /*
     |--------------------------------------------------------------------------
@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost:23333'),
+    'url' => env('APP_URL', 'http://acm.infinitys.site'),
 
     /*
     |--------------------------------------------------------------------------
@@ -178,9 +178,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        //
-
+        /**
+         * Third Party Service Providers...
+         */
         Collective\Html\HtmlServiceProvider::class,
+        Ultraware\Roles\RolesServiceProvider::class,
     ],
 
     /*

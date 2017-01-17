@@ -44,7 +44,7 @@ class Functions
             ['text'=>'天', 'base'=> 7],
             ['text'=>'周', 'base'=> 4],
             ['text'=>'月', 'base'=> 12],
-            ['text'=>'年', 'base'=> 3],
+            ['text'=>'年', 'base'=> 2147483647],
             ['text'=>'很久'],
         ];
         foreach ($time as $unit) {

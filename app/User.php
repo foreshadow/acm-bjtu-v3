@@ -4,10 +4,12 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Ultraware\Roles\Traits\HasRoleAndPermission;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasRoleAndPermission;
 
     /**
      * The attributes that are mass assignable.
@@ -34,7 +36,7 @@ class User extends Authenticatable
 
     public function url()
     {
-        return '/img/' . $this->avatar;
+        return '/img/'.$this->avatar;
     }
 
     public function articles()
@@ -45,5 +47,10 @@ class User extends Authenticatable
     public function publicArticles()
     {
         return $this->articles()->where('public', true);
+    }
+
+    public function online()
+    {
+        return $this->active_at && time() - strtotime($this->active_at) <= 5 * 60;
     }
 }

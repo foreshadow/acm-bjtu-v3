@@ -40,7 +40,7 @@ class PastebinController extends Controller
         $snippet->user_id = $request->user()->id;
 
         if ($snippet->save()) {
-            return redirect("pastebin/$snippet->id");
+            return redirect("pastebin/$snippet->id")->with('alert', ['message'=>'新建成功', 'type'=>'success', 'icon' => 'ok']);
         } else {
             return redirect()->back()->withInput();
         }

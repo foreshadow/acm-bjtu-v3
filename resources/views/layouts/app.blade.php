@@ -9,7 +9,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>@yield('title', config('app.name')) - {{ config('app.name') }}</title>
 
   <!-- Styles -->
   <link href="/css/app.css" rel="stylesheet">
@@ -65,6 +65,9 @@
             @else
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                <div style="width: 32px; height: 32px; display: inline; margin-right: 6px;">
+                  <img src="{{ Auth::user()->url() }}" style="max-width: 32px; max-height: 32px; border-radius: 3px; margin-top: -4px; margin-bottom: -4px;">
+                </div>
                 <strong>{{ Auth::user()->name }}</strong>
                 <small>{{ Auth::user()->email }}</small>
                 <span class="caret"></span>
@@ -84,12 +87,34 @@
         </div>
       </div>
     </nav>
-
+    @if (session('alert') !== null)
+    <div class="alert alert-fluid alert-dismissible alert-{{ session('alert')['type'] }}">
+      <div class="container">
+        <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <span>
+        @if (isset(session('alert')['icon']))
+          <span class="glyphicon glyphicon-{{ session('alert')['icon'] }}"></span>&emsp;{{ session('alert')['message'] }}
+        @else
+        {{ session('alert')['message'] }}
+        @endif
+        </span>
+      </div>
+    </div>
+    @endif
     @yield('content')
   </div>
 
   <!-- Scripts -->
-  <script src="/js/app.js"></script>
+  <!-- <script src="/js/app.js"></script> -->
+
+  <!-- jQuery -->
+  <script src="//cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
   @stack('scripts')
 </body>
 

@@ -14,7 +14,7 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('user.index');
+        return view('user.index')->with('users', User::all());
     }
 
     public function show($id)
@@ -48,7 +48,7 @@ class UserController extends Controller
         }
 
         if ($user->save()) {
-            return redirect('user/' . $id);
+            return redirect('user/' . $id)->with('alert', ['message'=>'修改成功', 'type'=>'success', 'icon' => 'ok']);
         } else {
             return redirect()->back()->withInput();
         }

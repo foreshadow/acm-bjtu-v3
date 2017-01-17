@@ -39,7 +39,7 @@ class ArticleController extends Controller
         $article->public = ($request->get('public') or false);
 
         if ($article->save()) {
-            return redirect('article');
+            return redirect('article')->with('alert', ['message'=>'新建成功', 'type'=>'success', 'icon' => 'ok']);
         } else {
             return redirect()->back()->withInput();
         }
@@ -81,7 +81,7 @@ class ArticleController extends Controller
         $article->public = ($request->get('public') or false);
 
         if ($article->save()) {
-            return redirect('article');
+            return redirect('article')->with('alert', ['message'=>'修改成功', 'type'=>'success', 'icon' => 'ok']);
         } else {
             return redirect()->back()->withInput();
         }
@@ -94,6 +94,6 @@ class ArticleController extends Controller
             return redirect('article');
         }
         $article->delete();
-        return redirect()->back()->withInput();
+        return redirect()->back()->withInput()->with('alert', ['message'=>'删除成功', 'type'=>'success', 'icon' => 'ok']);
     }
 }

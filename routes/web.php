@@ -15,7 +15,7 @@ use App\Article;
 use App\Snippet;
 
 Route::get('/', function () {
-    return view('index')->with('articles', Article::all());
+    return view('index')->with('articles', Article::where('public', '=', true)->get());
 });
 
 Auth::routes();

@@ -6,7 +6,7 @@
 <div class="container">
   <div class="row">
     @if ($article->toc)
-    <div class="col-md-8">
+    <div class="col-md-9">
     @else
     <div class="col-md-8 col-md-offset-2">
     @endif
@@ -30,7 +30,7 @@
       </div>
     </div>
     @if ($article->toc)
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4>目录</h4>

@@ -34,7 +34,7 @@
               <span class="help-block" style="display: initial;"><small>包含标题元素的导航窗格。</small></span>
               <br>
               {{ Form::checkbox('label', '1', $article->label) }}
-              <small>1.1</small>
+              <small>1.1&emsp;</small>
               {{ Form::label('', '数字节标题') }}
               <span class="help-block" style="display: initial;"><small>markdown格式中，所有标题会按顺序加上形如1.1的数字。</small></span>
               <br>

@@ -30,7 +30,7 @@
 
             <div class="form-group form-group-sm">
               <div class="col-md-4 col-md-offset-2">
-                <button type="submit" class="btn btn-primary">@icon('send')发送重置链接</button>
+                <button type="submit" class="btn btn-sm btn-primary">@icon('send')发送重置链接</button>
               </div>
             </div>
           </form>

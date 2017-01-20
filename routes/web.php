@@ -15,7 +15,7 @@ use App\Article;
 use App\Snippet;
 
 Route::get('/', function () {
-    return view('index')->with('articles', Article::where('public', '=', true)->get());
+    return view('index')->with('articles', Article::where('public', '=', true)->orderBy('updated_at', 'desc')->get());
 });
 
 Auth::routes();
@@ -31,5 +31,7 @@ Route::group(['prefix' => 'oj', 'namespace' => 'OJ'], function () {
 
 Route::resource('user', 'UserController');
 Route::resource('article', 'ArticleController');
+Route::resource('comment', 'CommentController');
+Route::resource('blog', 'BlogController');
 Route::resource('pastebin', 'PastebinController');
 Route::resource('report', 'ReportController');

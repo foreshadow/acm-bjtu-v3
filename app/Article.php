@@ -12,11 +12,16 @@ class Article extends Model
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
     public function info()
     {
-        $info = '创建于 ' . Functions::datetime($this->created_at);
+        $info = '创建于 '.Functions::datetime($this->created_at);
         if ($this->updated_at != $this->created_at) {
-            $info .= ' 修改于 ' . Functions::datetime($this->updated_at);
+            $info .= ' 修改于 '.Functions::datetime($this->updated_at);
         }
         return $info;
     }
@@ -45,6 +50,7 @@ class Article extends Model
         $text = preg_replace('/<.*?>/', '<br>', $this->gfm());
         $text = preg_replace("/<br>\n<br>/", '<br>', $text);
         $array = array_slice(explode('<br>', $text), 1, $lines);
+
         return implode('<br>', $array);
     }
 }

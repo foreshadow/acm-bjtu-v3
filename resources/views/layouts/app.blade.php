@@ -20,6 +20,7 @@
 
 <body>
   <div id="app">
+    @section('navbar')
     <nav class="navbar navbar-default navbar-static-top">
       <div class="container">
         <div class="navbar-header">
@@ -65,8 +66,8 @@
             @else
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                <div style="width: 32px; height: 32px; display: inline; margin-right: 6px;">
-                  <img src="{{ Auth::user()->url() }}" style="max-width: 32px; max-height: 32px; border-radius: 3px; margin-top: -4px; margin-bottom: -4px;">
+                <div class="avatar avatar-sm">
+                  <img src="{{ Auth::user()->url() }}">
                 </div>
                 <strong>{{ Auth::user()->name }}</strong>
                 <small>{{ Auth::user()->email }}</small>
@@ -87,6 +88,7 @@
         </div>
       </div>
     </nav>
+    @show
     @if (session('alert') !== null)
     <div class="alert alert-fluid alert-dismissible alert-{{ session('alert')['type'] }}">
       <div class="container">
@@ -111,10 +113,17 @@
   <!-- <script src="/js/app.js"></script> -->
 
   <!-- jQuery -->
-  <script src="//cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
   <!-- Bootstrap Core JavaScript -->
-  <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="//cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
+  <script type="text/javascript">
+  $(document).ready(function() {
+      $('a[href^="http"]').each(function() {
+          $(this).attr('target', '_blank');
+      });
+  });
+  </script>
   @stack('scripts')
 </body>
 

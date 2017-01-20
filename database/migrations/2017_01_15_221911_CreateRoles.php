@@ -12,9 +12,7 @@ class CreateRoles extends Migration
     {
         Role::create(['name' => 'Super Admin', 'slug' => 'superadmin']);
         Role::create(['name' => 'Admin', 'slug' => 'admin']);
-        Role::create(['name' => 'Coach', 'slug' => 'coach']);
-        Role::create(['name' => 'Bjtu Acm', 'slug' => 'bjtuacm']);
-        Role::create(['name' => 'Bjtu Student', 'slug' => 'bjtustudent']);
+        Role::create(['name' => 'Bjtu ACMer', 'slug' => 'bjtuacm']);
         Role::create(['name' => 'Registered User', 'slug' => 'registereduser']);
     }
 
@@ -25,9 +23,7 @@ class CreateRoles extends Migration
     {
         Role::where('slug', '=', 'superadmin')->delete();
         Role::where('slug', '=', 'admin')->delete();
-        Role::where('slug', '=', 'coach')->delete();
         Role::where('slug', '=', 'bjtuacm')->delete();
-        Role::where('slug', '=', 'bjtustudent')->delete();
         Role::where('slug', '=', 'registereduser')->delete();
     }
 }

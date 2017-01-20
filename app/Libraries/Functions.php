@@ -30,7 +30,7 @@ class Functions
 
     public static function datetime($expression)
     {
-        return date('y/n/j G:i', strtotime((string)$expression));
+        return date('y/n/j G:i', strtotime((string) $expression));
     }
 
     public static function relative_time($timeInterval, $extend = false)
@@ -38,28 +38,39 @@ class Functions
         $suffix = $timeInterval > 0 ? '后' : '前';
         $timeInterval = abs($timeInterval);
         $time = [
-            ['text'=>'秒', 'base'=> 60],
-            ['text'=>'分钟', 'base'=> 60],
-            ['text'=>'小时', 'base'=> 24],
-            ['text'=>'天', 'base'=> 7],
-            ['text'=>'周', 'base'=> 4],
-            ['text'=>'月', 'base'=> 12],
-            ['text'=>'年', 'base'=> 2147483647],
-            ['text'=>'很久'],
+            ['text' => '秒', 'base' => 60],
+            ['text' => '分钟', 'base' => 60],
+            ['text' => '小时', 'base' => 24],
+            ['text' => '天', 'base' => 7],
+            ['text' => '周', 'base' => 4],
+            ['text' => '月', 'base' => 12],
+            ['text' => '年', 'base' => 2147483647],
+            ['text' => '很久'],
         ];
         foreach ($time as $unit) {
             if ($timeInterval < $unit['base']) {
-                $relative = $timeInterval . $unit['text'];
+                $relative = $timeInterval.$unit['text'];
                 if (isset($remainder) && $remainder) {
                     $relative .= $remainder;
                 }
-                return $relative. $suffix;
+
+                return $relative.$suffix;
             } else {
                 if ($extend) {
-                    $remainder = $timeInterval % $unit['base'] . $unit['text'];
+                    $remainder = $timeInterval % $unit['base'].$unit['text'];
                 }
                 $timeInterval = floor($timeInterval / $unit['base']);
             }
+        }
+    }
+
+    public static function partial_relative($timestamp, $limit = 2 * 7 * 24 * 60 * 60)
+    {
+        $difference = strtotime($timestamp) - time();
+        if ($difference > $limit) {
+            return Functions::datetime($timestamp);
+        } else {
+            return Functions::relative_time($difference);
         }
     }
 }

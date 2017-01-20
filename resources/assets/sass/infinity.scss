@@ -5,8 +5,12 @@
 }
 
 .form-group-sm .help-block {
-    font-size: 85%;
     margin-bottom: 5px;
+    font-size: 85%;
+}
+
+.help-block.help-block-inline {
+    display: inline;
 }
 
 .alert-fluid {
@@ -21,4 +25,39 @@
         top: 3px;
         right: 0;
     }
+}
+
+textarea {
+    resize: none;
+}
+
+.avatar {
+    float: left;
+
+    > img {
+        border-radius: 3px;
+    }
+}
+$avatar: (sm, 32, -6, 0, 9), (md, 48, 0, 0, 0), (lg, 64, 0, 0, 15), (xl, 128, 0, 15, 0);
+@each $label, $size, $mt, $ml, $mr in $avatar {
+    .avatar-#{$label} {
+        width: $size * 1px;
+        height: $size * 1px;
+        margin-top: $mt * 1px;
+        margin-right: $mr * 1px;
+        margin-left: $ml * 1px;
+
+        > img {
+            max-width: $size * 1px;
+            max-height: $size * 1px;
+        }
+
+        + .panel {
+            margin-left: ($size + 9) * 1px;
+        }
+    }
+}
+
+.markdown > *:last-child {
+    margin-bottom: 0 !important;
 }

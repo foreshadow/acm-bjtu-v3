@@ -4,10 +4,12 @@
   <div class="row">
     <div class="col-md-3">
       <div class="panel panel-default">
-        <div class="panel-heading">个人信息</div>
+        <div class="panel-heading">
+          <h3 class="panel-title">个人信息</h3>
+        </div>
         <div class="panel-body">
-          <div class="pull-left" style="width: 64px; height: 64px; display: inline; margin-right: 15px;">
-            <img src="{{ Auth::user()->url() }}" style="max-width: 64px; max-height: 64px; border-radius: 3px;">
+          <div class="avatar avatar-lg pull-left">
+            <img src="{{ Auth::user()->url() }}">
           </div>
           <p>
             <strong><a href="/user/{{ Auth::id() }}">{{ Auth::user()->name }}</a></strong>
@@ -18,7 +20,9 @@
         </div>
       </div>
       <div class="panel panel-default">
-        <div class="panel-heading">Pastebin</div>
+        <div class="panel-heading">
+          <h3 class="panel-title">Pastebin</h3>
+        </div>
         <div class="panel-body">
           <a href="/pastebin/create" class="btn btn-sm btn-success">@icon('plus')新建</a>
           <a href="/pastebin" class="btn btn-sm btn-info">@icon('zoom-in')查看全部</a>
@@ -88,7 +92,9 @@
         </div>
       </div>
       <div class="panel panel-default">
-        <div class="panel-heading">文章</div>
+        <div class="panel-heading">
+          <h3 class="panel-title">文章</h3>
+        </div>
         <div class="panel-body">
           <a href="/article/create" class="btn btn-sm btn-success">@icon('plus')新建</a>
           <a href="/article" class="btn btn-sm btn-info">@icon('zoom-in')查看全部</a>

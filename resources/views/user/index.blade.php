@@ -5,7 +5,6 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
-        <!-- <div class="panel-heading"></div> -->
         <ul class="list-group">
           @foreach ($users as $user)
           <li class="list-group-item">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
+use Auth;
 
 class ArticleController extends Controller
 {
@@ -14,7 +15,7 @@ class ArticleController extends Controller
 
     public function index()
     {
-        return view('article.index')->with('articles', Article::where('user_id', '=', \Auth::id())->get());
+        return view('article.index')->with('articles', Article::where('user_id', '=', Auth::id())->get());
     }
 
     public function create()
@@ -48,8 +49,9 @@ class ArticleController extends Controller
     public function show($id)
     {
         $article = Article::find($id);
-        if ($article->public || (\Auth::check() && \Auth::id() == $article->user_id)) {
-            return view('article.show')->with('article', $article);
+        if ($article->public || (Auth::check() && Auth::id() == $article->user_id)) {
+            return view('article.show')->with('article', $article)
+                                       ->with('comments', $article->comments);
         } else {
             redirect('/');
         }

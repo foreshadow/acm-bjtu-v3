@@ -31,7 +31,7 @@ class User extends Authenticatable
 
     public function link()
     {
-        return sprintf('<a href="/user/%s">%s</a>', $this->id, $this->name);
+        return sprintf('<strong><a href="/user/%s">%s</a></strong>', $this->id, $this->name);
     }
 
     public function url()

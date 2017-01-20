@@ -5,7 +5,9 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
-        <div class="panel-heading">修改资料</div>
+        <div class="panel-heading">
+          <h3 class="panel-title">修改资料</h3>
+        </div>
         <div class="panel-body">
           @if (count($errors) > 0)
           <div class="alert alert-danger">
@@ -85,9 +87,6 @@
             </div>
           {{ Form::close() }}
           </div>
-          <!-- <div class="col-md-4" style="width: 128px; height: 128px; margin-left: 15px;">
-            <img src="{{ $user->url() }}" style="max-width: 128px; max-height: 128px; border-radius: 3px;">
-          </div> -->
         </div>
       </div>
     </div>

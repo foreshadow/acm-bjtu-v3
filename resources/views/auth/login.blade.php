@@ -7,7 +7,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
-      <h2 class="text-center">登录 acm.bjtu</h2>
+      <h2 class="text-center">登录 {{ config('app.name') }}</h2>
       <br>
       <div class="panel panel-default">
         <div class="panel-body">

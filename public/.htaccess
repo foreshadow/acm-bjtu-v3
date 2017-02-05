@@ -19,11 +19,12 @@
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 </IfModule>
 
-LoadModule expires_module modules/mod_expires.so
-ExpiresActive On
-ExpiresByType text/css "now plus 5 minutes"
-ExpiresByType text/js "now plus 5 minutes"
-ExpiresByType image/jpeg "now plus 5 minutes"
-ExpiresByType image/png "now plus 5 minutes"
-# For glyphicon fonts, unknown effect
-ExpiresByType application/octet-stream "now plus 5 minutes"
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "now plus 5 minutes"
+    ExpiresByType text/js "now plus 5 minutes"
+    ExpiresByType image/jpeg "now plus 5 minutes"
+    ExpiresByType image/png "now plus 5 minutes"
+    # For glyphicon fonts, unknown effect
+    ExpiresByType application/octet-stream "now plus 5 minutes"
+</IfModule>

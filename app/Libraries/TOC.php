@@ -71,7 +71,7 @@ class TOC
             if ($n == -1) {
                 return $this->html = $this->markdown;
             }
-            $this->html = substr($this->markdown, 0, 3);
+            $this->html = substr($this->markdown, 0, $result[0]['offset'] + 1);
             for ($i = 0; $i < $n; $i += 1) {
                 $r =  $result[$i];
                 $this->html .= ' id="' . $r['id'] . $r['heading'] . '">' . $r['string'] . ' ';

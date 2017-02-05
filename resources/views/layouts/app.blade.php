@@ -121,7 +121,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.js"></script>
 
   <!-- Bootstrap Core JavaScript -->
-  <script src="//cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
   <script type="text/javascript">
   $(document).ready(function() {
@@ -132,18 +132,18 @@
           html: true
       });
       jconfirm.defaults = {
-          bgOpacity: .55,
+          theme: 'infinity'
       };
       $('[data-confirm]').click(function() {
           event.preventDefault();
           var form = $(this).parent();
           $.confirm({
-              title: '',
+              title: '删除',
               content: $(this).attr('data-confirm'),
               buttons: {
                   confirm: {
                       text: '删除',
-                      btnClass: 'btn-sm btn-danger',
+                      btnClass: 'btn-danger',
                       action: function () {
                           form.submit();
                       }

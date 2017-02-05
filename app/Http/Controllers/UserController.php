@@ -42,7 +42,7 @@ class UserController extends Controller
         $user->location1 = $request->get('location1');
         $user->location2 = $request->get('location2');
         $user->handle = $request->get('handle');
-        $user->phone = $request->get('phone');
+        // $user->phone = $request->get('phone');
         if ($request->hasFile('avatar')) {
             $user->avatar = \Storage::disk('img')->put('user', $request->file('avatar'));
         }

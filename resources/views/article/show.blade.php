@@ -38,7 +38,11 @@
               <form action="/comment/{{ $comment->id }}" method="POST">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
-                <button type="submit" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="submit" class="close" data-confirm="你确定要删除吗？"
+                        data-toggle="tooltip" data-placement="left" title="<span class='glyphicon glyphicon-trash'></span> 删除">
+                  <span aria-hidden="true">&times;</span>
+                  <span class="sr-only">Close</span>
+                </button>
               </form>
               @endif
               {!! $comment->author->link() !!}

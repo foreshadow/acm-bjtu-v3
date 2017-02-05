@@ -73,13 +73,13 @@
               </div>
               <span class="help-block">显示Codeforces状态！</span>
             </div>
-            <div class="form-group form-group-sm">
+            <!-- <div class="form-group form-group-sm">
               {{ Form::label('', '手机', ['class' => 'col-md-4 control-label']) }}
               <div class="col-md-4">
                 {{ Form::text('phone', Auth::user()->phone, ['class' => 'input-sm form-control']) }}
               </div>
               <span class="help-block">用来发送短信通知</span>
-            </div>
+            </div> -->
             <div class="form-group">
               <div class="col-sm-offset-4 col-sm-4">
                 <button type="submit" class="btn btn-sm btn-primary">@icon('send')提交</button>

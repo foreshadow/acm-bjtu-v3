@@ -14,6 +14,9 @@
   <!-- Styles -->
   <link href="/css/app.css" rel="stylesheet">
 
+  <!-- jQuery confirm -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.css">
+
   <!-- Scripts -->
   <script>window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(),]); ?></script>
 </head>
@@ -114,6 +117,9 @@
 
   <!-- jQuery -->
   <script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+  <!-- jQuery Extension -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.js"></script>
+
   <!-- Bootstrap Core JavaScript -->
   <script src="//cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
@@ -121,6 +127,35 @@
   $(document).ready(function() {
       $('a[href^="http"]').each(function() {
           $(this).attr('target', '_blank');
+      });
+      $('[data-toggle="tooltip"]').tooltip({
+          html: true
+      });
+      jconfirm.defaults = {
+          bgOpacity: .55,
+      };
+      $('[data-confirm]').click(function() {
+          event.preventDefault();
+          var form = $(this).parent();
+          $.confirm({
+              title: '',
+              content: $(this).attr('data-confirm'),
+              buttons: {
+                  confirm: {
+                      text: '删除',
+                      btnClass: 'btn-sm btn-danger',
+                      action: function () {
+                          form.submit();
+                      }
+                  },
+                  cancel: {
+                      text: '取消',
+                      action: function () {
+                          event.preventDefault();
+                      }
+                  }
+              }
+          });
       });
   });
   </script>

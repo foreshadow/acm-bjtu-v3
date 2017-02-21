@@ -3,14 +3,26 @@
     <h3 class="panel-title">Pay attention</h3>
   </div>
   <ul class="list-group">
-    @php $contests = \App\CodeforcesContest::orderBy('startTimeSeconds')->where('startTimeSeconds', '>=', time())->take(3)->get(); @endphp
+    @php
+    // $contests = \App\CodeforcesContest::orderBy('startTimeSeconds')->where('startTimeSeconds', '>=', time() - 7200)->get();
+    // foreach ($contests as $contest) {
+    //     $contest['oj'] = 'codeforces';
+    // }
+    $infos = \App\InfoContest::orderBy('start_time')->where('start_time', '>=', time() - 7200)->take(3)->get();
+    foreach ($infos as $info) {
+        $info['startTimeSeconds'] = strtotime($info['start_time']);
+    }
+    // $contests = $contests->merge($infos);
+    $contests = $infos;
+    @endphp
     @foreach($contests->sortBy('startTimeSeconds') as $contest)
     <li class="list-group-item">
       <h4 class="text-center">Before contest
         <small>{{ \App\Utilities\Functions::relative_time($contest['startTimeSeconds'] - time()) }}</small>
       </h4>
       <p class="inline no-margin text-center">
-        <a href="//codeforces.com/contests/{{ $contest->id }}">
+        {{-- <a href="//codeforces.com/contests/{{ $contest->id }}"> --}}
+        <a href="{{ $contest->link }}">
           {{ $contest['name'] }}
         </a>
       </p>
@@ -26,7 +38,10 @@
       </div>
       <p class="text-center">
         <small>
-          <a href="http://codeforces.com" style="color: inherit; text-decoration: inherit;">codeforces.com</a>
+          <a href="http://codeforces.com" style="color: inherit; text-decoration: inherit;">
+            {{-- codeforces.com --}}
+            {{ $contest['oj'] }}
+          </a>
         </small>
       </p>
     </li>

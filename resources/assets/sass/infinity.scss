@@ -61,3 +61,19 @@ $avatar: (sm, 32, -6, 0, 9), (md, 48, 0, 0, 0), (lg, 64, 0, 0, 15), (xl, 128, 0,
 .markdown > *:last-child {
     margin-bottom: 0 !important;
 }
+
+// codeforces
+
+.rated-user {
+    margin-bottom: 0;
+}
+
+.problem-status {
+    padding-top: 9px;
+    padding-bottom: 9px;
+
+    h5 {
+        margin-top: 0;
+        margin-bottom: 6px;
+    }
+}

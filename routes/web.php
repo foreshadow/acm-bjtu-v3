@@ -13,6 +13,7 @@
 
 use App\Article;
 use App\Snippet;
+use App\CodeforcesStatus;
 
 Route::get('/', function () {
     return view('index')->with('articles', Article::where('public', '=', true)->orderBy('updated_at', 'desc')->get());
@@ -22,7 +23,8 @@ Auth::routes();
 
 Route::get('dashboard', function () {
     return view('dashboard')->with('articles', Article::where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get())
-                            ->with('snippets', Snippet::where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get());
+                            ->with('snippets', Snippet::where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get())
+                            ->with('statuses', CodeforcesStatus::where('handle', '=', Auth::user()->handle)->get());
 });
 
 Route::group(['prefix' => 'oj', 'namespace' => 'OJ'], function () {

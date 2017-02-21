@@ -19,6 +19,36 @@
           <a href="/user/{{ Auth::id() }}/edit" class="btn btn-sm btn-primary pull-right">@icon('pencil')修改</a>
         </div>
       </div>
+      @if (Auth::user()->handle)
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Codeforces</h3>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item no-margin {{ Auth::user()->codeforces_user->codeforces_rank_color_class() }}">
+            <!-- <img src="{{ Auth::user()->codeforces_user->avatar }}" style="max-width: 46px; max-height: 46px; border-radius: 3px; float: left;"> -->
+            <p class="pull-right" style="font-family: verdana; font-weight: bold;">{{ Auth::user()->codeforces_user->rating }}</p>
+            <p style="font-family: verdana; font-weight: bold;">{{ ucwords(Auth::user()->codeforces_user->rank) }}</p>
+            <p class="rated-user" style="font-size: 2rem;">{{ Auth::user()->codeforces_user->handle }}</p>
+          </li>
+          @php $statuses = \App\CodeforcesStatus::where('handle', '=', Auth::user()->handle)->orderBy('creationTimeSeconds', 'desc')->take(6)->get(); @endphp
+          @for ($i = 0, $n = count($statuses); $i < $n; $i += 1)
+          @php $status = $statuses[$i]; @endphp
+          @if ($i == 0 || $status->uid() != $statuses[$i - 1]->uid())
+          <li class="list-group-item problem-status">
+            <h5 class="inline">{{ $status->contestId }}{{ $status->index }} {{ $status->name }}</h5>
+          @endif
+            <div>
+              <small class="pull-right">{{ date('M/d H:i', $status->creationTimeSeconds) }}</small>
+              <small class="verdict {{ $status->codeforces_verdict_class() }}">{{ $status->codeforces_verdict(false) }}</small>
+            </div>
+          @if ($i == $n - 1 || $status->uid() != $statuses[$i + 1]->uid())
+          </li>
+          @endif
+          @endfor
+        </ul>
+      </div>
+      @endif
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Pastebin</h3>
@@ -43,7 +73,7 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <h3>{{ App\Functions::greetings() }}，{{ Auth::user()->name }}。</h3>
-          <!-- 四点以后就早安了-.- -->
+          <!-- 四点以后就早安了-.- 十点后就夜深了-->
           <hr>
           <div class="row">
             <div class="col-md-4">

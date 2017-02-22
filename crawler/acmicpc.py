@@ -9,4 +9,6 @@ if __name__ == '__main__':
      html = urllib.urlopen(url).read()
      j = json.loads(html)
      for contest in j:
-        db.insert_or_update(contest, 'codeforces_users', 'id')
+         contest.pop('week')
+         contest.pop('access')
+         db.insert_or_update(contest, 'info_contests', 'id')

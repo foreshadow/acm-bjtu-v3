@@ -53,14 +53,14 @@
               <span class="help-block">你的名字</span>
             </div>
             <div class="form-group form-group-sm">
-              {{ Form::label('', '学院', ['class' => 'col-md-4 control-label']) }}
+              {{ Form::label('', '学校', ['class' => 'col-md-4 control-label']) }}
               <div class="col-md-4">
                 {{ Form::text('location1', Auth::user()->location1, ['class' => 'input-sm form-control']) }}
               </div>
               <span class="help-block"></span>
             </div>
             <div class="form-group form-group-sm">
-              {{ Form::label('', '班级', ['class' => 'col-md-4 control-label']) }}
+              {{ Form::label('', '学院', ['class' => 'col-md-4 control-label']) }}
               <div class="col-md-4">
                 {{ Form::text('location2', Auth::user()->location2, ['class' => 'input-sm form-control']) }}
               </div>

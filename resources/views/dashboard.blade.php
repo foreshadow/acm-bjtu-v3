@@ -19,7 +19,7 @@
           <a href="/user/{{ Auth::id() }}/edit" class="btn btn-sm btn-primary pull-right">@icon('pencil')修改</a>
         </div>
       </div>
-      @if (Auth::user()->handle)
+      @if (Auth::user()->codeforces_user)
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Codeforces</h3>

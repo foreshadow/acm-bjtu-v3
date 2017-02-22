@@ -8,7 +8,7 @@ url = 'http://codeforces.com/api/user.status?handle={}&from=1&count={}';
 if __name__ == '__main__':
     db = mysqlbuilder.database(debug = True)
     db.query('select handle from users', [])
-    for row in db.cursor:
+    for row in db.cursor.fetchall():
          handle = row[0]
          print handle
          html = urllib.urlopen(url.format(handle, count)).read()

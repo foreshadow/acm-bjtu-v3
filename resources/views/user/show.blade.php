@@ -31,13 +31,14 @@
             <label>Codeforces handle: </label> {{ $user->handle }}</p>
             <hr>
             <p>
+              最后登录于
               @if ($user->online())
-              <strong><span class="text-success">在线</span></strong>
+              <strong><span class="text-success">当前在线</span></strong>
               @else
-              最后登录于 {{ App\Functions::relative_time($user->updated_at->timestamp - time(), true) }}
+              {{ App\Functions::relative_time($user->updated_at->timestamp - time()) }}
               @endif
               <br>
-              注册于 {{ App\Functions::relative_time($user->created_at->timestamp - time(), true) }}
+              注册于 {{ App\Functions::relative_time($user->created_at->timestamp - time()) }}
             </p>
           </div>
         </div>

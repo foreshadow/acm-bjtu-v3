@@ -40,7 +40,7 @@
           {{ \App\Utilities\Functions::relative_time($contest['startTimeSeconds'] - time()) }}
         </small>
       </div>
-      <div class="text-center">
+      <div class="text-center @if ($info['startTimeSeconds'] < time()) text-danger @endif">
         <small>{{ \App\Utilities\Functions::relative_time($contest['startTimeSeconds'] - time()) }}</small>
       </div>
       <div class="text-center">

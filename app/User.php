@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->active_at && time() - strtotime($this->active_at) <= 5 * 60;
     }
+
+    public function codeforces_user()
+    {
+        return $this->belongsTo('\App\CodeforcesUser', 'handle', 'handle');
+    }
 }

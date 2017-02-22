@@ -2,15 +2,51 @@
   <div class="panel-heading">
     <h3 class="panel-title">Pay attention</h3>
   </div>
-  <div class="panel-body">
-    <h4 class="text-center text-primary">Before contest <small>2 days</small></h4>
-    <p class="text-center"><a href="#">8VC Venture Cup 2017 - Elimination Round</a></p>
-    <p class="text-center"><small>codeforces.com</small></p>
-    <hr>
-    <h4 class="text-center text-primary">Before contest <small>4 days</small></h4>
-    <p class="text-center"><a href="#">8VC Venture Cup 2017 - Final Round</a></p>
-    <p class="text-center"><small>codeforces.com</small></p>
-  </div>
+  <ul class="list-group">
+    @php
+    // $contests = \App\CodeforcesContest::orderBy('startTimeSeconds')->where('startTimeSeconds', '>=', time() - 7200)->get();
+    // foreach ($contests as $contest) {
+    //     $contest['oj'] = 'codeforces';
+    // }
+    $infos = \App\InfoContest::orderBy('start_time')->where('start_time', '>=', time() - 7200)->take(3)->get();
+    foreach ($infos as $info) {
+        $info['startTimeSeconds'] = strtotime($info['start_time']);
+    }
+    // $contests = $contests->merge($infos);
+    $contests = $infos;
+    @endphp
+    @foreach($contests->sortBy('startTimeSeconds') as $contest)
+    <li class="list-group-item">
+      <h4 class="text-center">Before contest
+        <small>{{ \App\Utilities\Functions::relative_time($contest['startTimeSeconds'] - time()) }}</small>
+      </h4>
+      <p class="inline no-margin text-center">
+        {{-- <a href="//codeforces.com/contests/{{ $contest->id }}"> --}}
+        <a href="{{ $contest->link }}">
+          {{ $contest['name'] }}
+        </a>
+      </p>
+      <div class="text-center hidden">
+        <small>
+          {{ date('D M/d/Y H:i', $contest['startTimeSeconds']) }}
+          (+{{ sprintf("%s:%02s", $contest['durationSeconds'] / 3600, $contest['durationSeconds'] % 3600 / 60) }})
+        </small>
+        <!-- <small class="pull-right"> -->
+        <small>
+          {{ \App\Utilities\Functions::relative_time($contest['startTimeSeconds'] - time()) }}
+        </small>
+      </div>
+      <p class="text-center">
+        <small>
+          <a href="http://codeforces.com" style="color: inherit; text-decoration: inherit;">
+            {{-- codeforces.com --}}
+            {{ $contest['oj'] }}
+          </a>
+        </small>
+      </p>
+    </li>
+    @endforeach
+  </ul>
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">

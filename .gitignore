@@ -12,4 +12,6 @@ Homestead.yaml
 /public/js
 /public/img
 serve.sh
+
+crawler/env.py
 *.pyc

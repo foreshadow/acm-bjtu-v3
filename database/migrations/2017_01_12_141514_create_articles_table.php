@@ -19,7 +19,7 @@ class CreateArticlesTable extends Migration
             $table->timestamps();
             $table->string('title')->nullable();
             $table->string('category')->nullable();
-            $table->string('body')->nullable();
+            $table->text('body')->nullable();
             $table->string('renderer')->nullable();
             $table->boolean('toc');
             $table->boolean('label');

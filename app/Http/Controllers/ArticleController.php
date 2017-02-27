@@ -53,7 +53,7 @@ class ArticleController extends Controller
             return view('article.show')->with('article', $article)
                                        ->with('comments', $article->comments);
         } else {
-            redirect('/');
+            return redirect('/');
         }
     }
 

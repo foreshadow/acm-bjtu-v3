@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'acm.infinitys',
+    'name' => 'bjtuacm.org',
 
     /*
     |--------------------------------------------------------------------------
@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://acm.infinitys.site'),
+    'url' => env('APP_URL', 'https://bjtuacm.org'),
 
     /*
     |--------------------------------------------------------------------------

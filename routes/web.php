@@ -28,6 +28,12 @@ Route::get('dashboard', function () {
 });
 
 Route::group(['prefix' => 'oj', 'namespace' => 'OJ'], function () {
+    Route::get('/', function() {
+        return view('building');
+    });
+    Route::get('/submission', function() {
+        return view('building');
+    });
     Route::resource('problem', 'ProblemController');
 });
 

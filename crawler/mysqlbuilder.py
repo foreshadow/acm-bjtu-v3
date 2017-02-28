@@ -67,5 +67,7 @@ class database:
     def __escape_value(value):
         if type(value) == type(0):
             return str(value)
+        elif value == None:
+            return "''"
         else:
             return "'{}'".format(str(value).replace("'", "''"))

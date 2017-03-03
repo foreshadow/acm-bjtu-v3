@@ -74,8 +74,8 @@
         <div class="panel-body">
           <h3>{{ App\Functions::greetings() }}，{{ Auth::user()->name }}。</h3>
           <!-- 四点以后就早安了-.- 十点后就夜深了-->
-          <hr>
-          <div class="row">
+          <hr class="hidden">
+          <div class="row hidden">
             <div class="col-md-4">
               <div class="panel panel-primary">
                 <div class="panel-heading sm">

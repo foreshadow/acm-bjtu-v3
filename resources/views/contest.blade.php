@@ -9,7 +9,7 @@
   $contests = $infos;
   @endphp
   <div class="container">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-12">
       <h3>所有比赛</h3>
       <table class="table table-striped table-hover">
         <thead>

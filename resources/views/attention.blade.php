@@ -63,7 +63,7 @@
     </li>
   </ul>
 </div>
-<div class="panel panel-default">
+<div class="panel panel-default hidden">
   <div class="panel-heading">
     <h3 class="panel-title">Recent actions</h3>
   </div>

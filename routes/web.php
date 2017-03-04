@@ -28,10 +28,10 @@ Route::get('dashboard', function () {
 });
 
 Route::group(['prefix' => 'oj', 'namespace' => 'OJ'], function () {
-    Route::get('/', function() {
+    Route::get('/', function () {
         return view('building');
     });
-    Route::get('/submission', function() {
+    Route::get('/submission', function () {
         return view('building');
     });
     Route::resource('problem', 'ProblemController');
@@ -43,3 +43,6 @@ Route::resource('comment', 'CommentController');
 Route::resource('blog', 'BlogController');
 Route::resource('pastebin', 'PastebinController');
 Route::resource('report', 'ReportController');
+Route::get('contest', function () {
+    return view('contest');
+});

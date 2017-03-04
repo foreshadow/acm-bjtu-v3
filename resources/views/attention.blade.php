@@ -41,7 +41,10 @@
         </small>
       </div>
       <div class="text-center @if ($info['startTimeSeconds'] < time()) text-danger @endif">
-        <small>{{ \App\Utilities\Functions::relative_time($contest['startTimeSeconds'] - time()) }}</small>
+        <small>
+          {{ date('l, F jS H:i', $contest['startTimeSeconds']) }},
+          {{ \App\Utilities\Functions::relative_time($contest['startTimeSeconds'] - time()) }}
+        </small>
       </div>
       <div class="text-center">
         <small>
@@ -55,6 +58,9 @@
       </div>
     </li>
     @endforeach
+    <li class="list-group-item text-center">
+      <small><a href="/contest" style="color: inherit; text-decoration: inherit;">查看全部</a></small>
+    </li>
   </ul>
 </div>
 <div class="panel panel-default">

@@ -9,7 +9,9 @@ if __name__ == '__main__':
     html = urllib.urlopen(url).read()
     j = json.loads(html)
     for contest in j:
-        if contest['oj'] in ['AtCoder', 'Leetcode', 'BestCoder', 'Topcoder']:
+        if contest['oj'] in ['BestCoder', 'Topcoder']:
             contest.pop('week')
             contest.pop('access')
+            if contest['name'][:3] == 'SRM':
+                contest['name'] = 'Topcoder ' + contest['name']
             db.insert_or_update(contest, 'info_contests', 'id')

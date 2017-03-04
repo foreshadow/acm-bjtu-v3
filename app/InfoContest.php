@@ -10,7 +10,7 @@ class InfoContest extends Model
     {
         $infos = InfoContest::orderBy('start_time')
                             ->where('start_time', '>=', date('Y-m-d H:i:s', time() - 7200))
-                            ->whereIn('oj', ['Topcoder', 'Codeforces', 'BestCoder', 'Leetcode', 'AtCoder'])
+                            // ->whereIn('oj', ['Topcoder', 'Codeforces', 'BestCoder', 'Leetcode', 'AtCoder'])
                             ->take($count)->get();
         return $infos;
     }

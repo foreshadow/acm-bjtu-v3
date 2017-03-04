@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ config('app.locale') }}">
 
 <head>
   <meta charset="utf-8">
@@ -9,7 +9,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>@yield('title', config('app.name')) - {{ config('app.name') }}</title>
+  <title>@yield('title', config('app.name'))</title>
 
   <!-- Styles -->
   <link href="/css/app.css" rel="stylesheet">
@@ -126,6 +126,9 @@
   <script type="text/javascript">
   $(document).ready(function() {
       $('a[href^="http"]').each(function() {
+          $(this).attr('target', '_blank');
+      });
+      $('a[href^="//"]').each(function() {
           $(this).attr('target', '_blank');
       });
       $('[data-toggle="tooltip"]').tooltip({

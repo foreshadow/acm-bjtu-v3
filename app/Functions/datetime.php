@@ -43,8 +43,8 @@ function relative_time($timeInterval, $extend = false)
         ['text' => '分钟', 'base' => 60],
         ['text' => '小时', 'base' => 24],
         ['text' => '天', 'base' => 7],
-        ['text' => '周', 'base' => 4],
-        ['text' => '月', 'base' => 12],
+        ['text' => '星期', 'base' => 4],
+        ['text' => '个月', 'base' => 12],
         ['text' => '年', 'base' => 2147483647],
         ['text' => '很久'],
     ];

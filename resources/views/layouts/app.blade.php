@@ -132,6 +132,7 @@
       <footer>
         <small>&copy; 2017 Infinity</small>
       </footer>
+      <br>
     </div>
   </div>
 

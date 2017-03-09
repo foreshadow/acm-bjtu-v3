@@ -27,19 +27,19 @@ class Codeforces extends Migration
         });
         Schema::create('codeforces_users', function (Blueprint $table) {
             $table->string('handle');
-            $table->string('lastName');
-            $table->string('firstName');
-            $table->string('country');
-            $table->string('city');
-            $table->string('organization');
-            $table->string('avatar');
+            $table->string('lastName')->nullable();
+            $table->string('firstName')->nullable();
+            $table->string('country')->nullable();
+            $table->string('city')->nullable();
+            $table->string('organization')->nullable();
+            $table->string('avatar')->nullable();
             $table->integer('rating');
             $table->string('rank');
             $table->integer('maxRating');
             $table->string('maxRank');
-            $table->string('titlePhoto');
-            $table->integer('contribution');
-            $table->integer('friendOfCount');
+            $table->string('titlePhoto')->nullable();
+            $table->integer('contribution')->nullable();
+            $table->integer('friendOfCount')->nullable();
             $table->integer('registrationTimeSeconds');
             $table->integer('lastOnlineTimeSeconds');
 

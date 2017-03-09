@@ -1,24 +1,12 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">比赛</h3>
+    <h3 class="panel-title">在线比赛</h3>
   </div>
   <ul class="list-group">
-    @php
-    // $contests = \App\CodeforcesContest::orderBy('startTimeSeconds')->where('startTimeSeconds', '>=', time() - 7200)->get();
-    // foreach ($contests as $contest) {
-    //     $contest['oj'] = 'codeforces';
-    // }
-    $infos = \App\InfoContest::filter();
-    foreach ($infos as $info) {
-        $info['startTimeSeconds'] = strtotime($info['start_time']);
-    }
-    // $contests = $contests->merge($infos);
-    $contests = $infos;
-    @endphp
-    @foreach($contests->sortBy('startTimeSeconds') as $contest)
+    @foreach (App\InfoContest::filter(4) as $contest)
     <li class="list-group-item">
       <h4 class="hidden text-center">
-        @if ($info['startTimeSeconds'] >= time())
+        @if ($contest['startTimeSeconds'] >= time())
         Before contest
         @else
         Contest is running
@@ -37,20 +25,20 @@
         </small>
         <!-- <small class="pull-right"> -->
         <small>
-          {{ \App\Utilities\Functions::relative_time($contest['startTimeSeconds'] - time()) }}
+          {{ relative_time($contest['startTimeSeconds'] - time()) }}
         </small>
       </div>
-      <div class="text-center @if ($info['startTimeSeconds'] < time()) text-danger @endif">
+      <div class="text-center @if ($contest['startTimeSeconds'] < time()) text-danger @endif">
         <small>
           {{ date('l, F jS H:i', $contest['startTimeSeconds']) }},
-          {{ \App\Utilities\Functions::relative_time($contest['startTimeSeconds'] - time()) }}
+          {{ relative_time($contest['startTimeSeconds'] - time()) }}
         </small>
       </div>
       <div class="text-center">
         <small>
-          {{-- <a href="http://codeforces.com" style="color: inherit; text-decoration: inherit;"> --}}
+          {{-- <a href="http://codeforces.com" class="link-initial"> --}}
             {{-- codeforces.com --}}
-          <a href="//{{ parse_url($contest->link)['host'] }}" style="color: inherit; text-decoration: inherit;">
+          <a href="//{{ parse_url($contest->link)['host'] }}" class="link-initial">
             {{-- {{ $contest['oj'] }} --}}
             {{ parse_url($contest->link)['host'] }}
           </a>
@@ -58,8 +46,8 @@
       </div>
     </li>
     @endforeach
-    <li class="list-group-item text-center">
-      <small><a href="/contest" style="color: inherit; text-decoration: inherit;">查看全部</a></small>
+    <li class="list-group-item text-center" style="padding: 3px;">
+      <small><a href="/contest" class="link-initial">查看全部</a></small>
     </li>
   </ul>
 </div>

@@ -14,9 +14,9 @@ class Comment extends Model
 
     public function info()
     {
-        $info = '评论于 ' . Functions::partial_relative($this->created_at);
+        $info = '评论于 ' . partial_relative($this->created_at);
         if ($this->updated_at != $this->created_at) {
-            $info .= ' 修改于 ' . Functions::partial_relative($this->updated_at);
+            $info .= ' 修改于 ' . partial_relative($this->updated_at);
         }
         return $info;
     }

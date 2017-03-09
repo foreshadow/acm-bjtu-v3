@@ -1,4 +1,5 @@
 <?php
+
 class ParsedownExtensionMathJaxLaTeX extends Parsedown
 {
     public function __construct()

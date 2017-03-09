@@ -19,9 +19,9 @@ class Article extends Model
 
     public function info()
     {
-        $info = '创建于 '.Functions::datetime($this->created_at);
+        $info = '创建于 '.datetime($this->created_at);
         if ($this->updated_at != $this->created_at) {
-            $info .= ' 修改于 '.Functions::datetime($this->updated_at);
+            $info .= ' 修改于 '.datetime($this->updated_at);
         }
         return $info;
     }

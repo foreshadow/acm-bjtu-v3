@@ -46,7 +46,7 @@
           <!-- Left Side Of Navbar -->
           <ul class="nav navbar-nav">
             <li><a href="/">首页</a></li>
-            <li class="dropdown">
+            <li class="dropdown hidden">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">测评 <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/oj">测评首页</a></li>
@@ -55,37 +55,39 @@
               </ul>
             </li>
             <li><a href="/blog">博客</a></li>
+            <li><a href="/contest">比赛</a></li>
             <li><a href="/user">用户</a></li>
-            <li><a href="/report">反馈</a></li>
-            <li><a href="/pastebin">Pastebin</a></li>
+            {{-- <li><a href="/report">反馈</a></li> --}}
+            {{-- <li><a href="/pastebin">Pastebin</a></li> --}}
+            <li><a href="/onsite">校赛报名</a></li>
           </ul>
 
           <!-- Right Side Of Navbar -->
           <ul class="nav navbar-nav navbar-right">
             <!-- Authentication Links -->
             @if (Auth::guest())
-            <li><a href="/login">登录</a></li>
-            <li><a href="/register">注册</a></li>
+              <li><a href="/login">登录</a></li>
+              <li><a href="/register">注册</a></li>
             @else
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                <div class="avatar avatar-sm">
-                  <img src="{{ Auth::user()->url() }}">
-                </div>
-                <strong>{{ Auth::user()->name }}</strong>
-                <small>{{ Auth::user()->email }}</small>
-                <span class="caret"></span>
-              </a>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                  <div class="avatar avatar-sm">
+                    <img src="{{ Auth::user()->url() }}">
+                  </div>
+                  <strong>{{ Auth::user()->name }}</strong>
+                  <small>{{ Auth::user()->email }}</small>
+                  <span class="caret"></span>
+                </a>
 
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="/dashboard">个人中心</a></li>
-                <li class="divider"></li>
-                <li>
-                  <a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">退出登录</a>
-                  <form id="logout-form" action="/logout" method="POST" style="display: none;">{{ csrf_field() }}</form>
-                </li>
-              </ul>
-            </li>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="/dashboard">个人中心</a></li>
+                  <li class="divider"></li>
+                  <li>
+                    <a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">退出登录</a>
+                    <form id="logout-form" action="/logout" method="POST" style="display: none;">{{ csrf_field() }}</form>
+                  </li>
+                </ul>
+              </li>
             @endif
           </ul>
         </div>
@@ -93,23 +95,44 @@
     </nav>
     @show
     @if (session('alert') !== null)
-    <div class="alert alert-fluid alert-dismissible alert-{{ session('alert')['type'] }}">
-      <div class="container">
-        <button type="button" class="close" data-dismiss="alert">
-          <span aria-hidden="true">&times;</span>
-          <span class="sr-only">Close</span>
-        </button>
-        <span>
-        @if (isset(session('alert')['icon']))
-          <span class="glyphicon glyphicon-{{ session('alert')['icon'] }}"></span>&emsp;{{ session('alert')['message'] }}
-        @else
-        {{ session('alert')['message'] }}
-        @endif
-        </span>
+      <div class="alert alert-fluid alert-dismissible alert-{{ session('alert')['type'] }}">
+        <div class="container">
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+          <span>
+          @if (isset(session('alert')['icon']))
+            <span class="glyphicon glyphicon-{{ session('alert')['icon'] }}"></span>&emsp;{{ session('alert')['message'] }}
+          @else
+            {{ session('alert')['message'] }}
+          @endif
+          </span>
+        </div>
       </div>
-    </div>
+    @elseif (count($errors) > 0)
+      <div class="alert alert-fluid alert-dismissible alert-danger">
+        <div class="container">
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+          <span>
+            <span class="glyphicon glyphicon-remove"></span>&emsp;
+            @foreach ($errors->all() as $error)
+              {{ $error }}
+            @endforeach
+          </span>
+        </div>
+      </div>
     @endif
-    @yield('content')
+    <div class="container">
+      @yield('content')
+      <hr>
+      <footer>
+        <small>&copy; 2017 Infinity</small>
+      </footer>
+    </div>
   </div>
 
   <!-- Scripts -->

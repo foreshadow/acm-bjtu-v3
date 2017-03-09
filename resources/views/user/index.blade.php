@@ -11,7 +11,7 @@
             @if ($user->online())
             <p class="pull-right"><strong><span class="text-success">在线</span></strong></p>
             @else
-            <p class="pull-right"><span class="text-muted">上次在线 {{ App\Functions::relative_time(strtotime($user->active_at) - time()) }}</span></p>
+            <p class="pull-right"><span class="text-muted">上次在线 {{ relative_time(strtotime($user->active_at) - time()) }}</span></p>
             @endif
             <a href="/user/{{ $user->id }}">{{ $user->name }}</a>
             @role('admin | superadmin')

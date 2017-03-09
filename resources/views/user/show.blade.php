@@ -7,7 +7,9 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="avatar avatar-xl pull-right">
-            <img src="{{ $user->url() }}">
+            @if ($user->url())
+              <img src="{{ $user->url() }}">
+            @endif
           </div>
           <div>
             @if (Auth::id() == $user->id)
@@ -28,17 +30,34 @@
               <small>{{ $user->email }}</small>
             </p>
             <p>{{ $user->location1 }} {{ $user->location2 }}</p>
-            <label>Codeforces handle: </label> {{ $user->handle }}</p>
+            @if (Auth::user()->codeforces_user)
+              <p>
+                <strong>Codeforces handle</strong>
+                <span class="{{ Auth::user()->codeforces_user->codeforces_rank_color_class() }}">
+                  <!-- <img src="{{ Auth::user()->codeforces_user->avatar }}" style="max-width: 46px; max-height: 46px; border-radius: 3px; float: left;"> -->
+                  <span class="rated-user" style="font-size: 2rem;">{{ Auth::user()->codeforces_user->handle }}</span>
+                  <span style="font-family: verdana; font-weight: bold;">
+                    ({{ ucwords(Auth::user()->codeforces_user->rank) }}
+                    {{ Auth::user()->codeforces_user->rating }})
+                  </span>
+                </span>
+              </p>
+            @else
+              <p>
+                <strong>Codeforces</strong>
+                {{ $user->handle }}
+              </p>
+            @endif
             <hr>
             <p>
               最后登录于
               @if ($user->online())
               <strong><span class="text-success">当前在线</span></strong>
               @else
-              {{ App\Functions::relative_time($user->updated_at->timestamp - time()) }}
+              {{ relative_time($user->updated_at->timestamp - time()) }}
               @endif
               <br>
-              注册于 {{ App\Functions::relative_time($user->created_at->timestamp - time()) }}
+              注册于 {{ relative_time($user->created_at->timestamp - time()) }}
             </p>
           </div>
         </div>

@@ -49,7 +49,7 @@
         </ul>
       </div>
       @endif
-      <div class="panel panel-default">
+      <div class="panel panel-default hidden">
         <div class="panel-heading">
           <h3 class="panel-title">Pastebin</h3>
         </div>
@@ -72,7 +72,7 @@
     <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-body">
-          <h3>{{ App\Functions::greetings() }}，{{ Auth::user()->name }}。</h3>
+          <h3>{{ greetings() }}，{{ Auth::user()->name }}。</h3>
           <!-- 四点以后就早安了-.- 十点后就夜深了-->
           <hr class="hidden">
           <div class="row hidden">

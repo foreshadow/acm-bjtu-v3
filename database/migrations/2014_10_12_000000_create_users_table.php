@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable();
             $table->string('password');
             $table->string('handle')->nullable();
+            $table->string('phone')->nullable();
             $table->timestamp('active_at')->nullable(); // TODO: doesn't work ?
             $table->rememberToken();
             $table->timestamps();

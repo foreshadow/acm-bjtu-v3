@@ -14,6 +14,7 @@
 use App\Article;
 use App\Snippet;
 use App\CodeforcesStatus;
+use App\InfoContest;
 
 Route::get('/', function () {
     return view('index')->with('articles', Article::where('public', '=', true)->orderBy('updated_at', 'desc')->get());
@@ -44,5 +45,7 @@ Route::resource('blog', 'BlogController');
 Route::resource('pastebin', 'PastebinController');
 Route::resource('report', 'ReportController');
 Route::get('contest', function () {
-    return view('contest');
+    return view('contest')->with('contests', InfoContest::filter());
 });
+Route::resource('onsite', 'OnsiteContestController');
+Route::resource('onsite/{id}/register', 'OnlineContestRegistrantController');

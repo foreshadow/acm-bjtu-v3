@@ -30,15 +30,15 @@
               <small>{{ $user->email }}</small>
             </p>
             <p>{{ $user->location1 }} {{ $user->location2 }}</p>
-            @if (Auth::user()->codeforces_user)
+            @if ($user->codeforces_user)
               <p>
                 <strong>Codeforces handle</strong>
-                <span class="{{ Auth::user()->codeforces_user->codeforces_rank_color_class() }}">
-                  <!-- <img src="{{ Auth::user()->codeforces_user->avatar }}" style="max-width: 46px; max-height: 46px; border-radius: 3px; float: left;"> -->
-                  <span class="rated-user" style="font-size: 2rem;">{{ Auth::user()->codeforces_user->handle }}</span>
+                <span class="{{ $user->codeforces_user->codeforces_rank_color_class() }}">
+                  <!-- <img src="{{ $user->codeforces_user->avatar }}" style="max-width: 46px; max-height: 46px; border-radius: 3px; float: left;"> -->
+                  <span class="rated-user" style="font-size: 2rem;">{{ $user->codeforces_user->handle }}</span>
                   <span style="font-family: verdana; font-weight: bold;">
-                    ({{ ucwords(Auth::user()->codeforces_user->rank) }}
-                    {{ Auth::user()->codeforces_user->rating }})
+                    ({{ ucwords($user->codeforces_user->rank) }}
+                    {{ $user->codeforces_user->rating }})
                   </span>
                 </span>
               </p>

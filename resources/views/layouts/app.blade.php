@@ -54,7 +54,7 @@
                 <li><a href="/oj/submission">提交状态</a></li>
               </ul>
             </li>
-            <li><a href="/blog">博客</a></li>
+            {{-- <li><a href="/blog">博客</a></li> --}}
             <li><a href="/contest">比赛</a></li>
             <li><a href="/user">用户</a></li>
             {{-- <li><a href="/report">反馈</a></li> --}}
@@ -128,6 +128,8 @@
     @endif
     <div class="container">
       @yield('content')
+    </div>
+    <div class="container">
       <hr>
       <footer>
         <small>&copy; 2017 Infinity</small>

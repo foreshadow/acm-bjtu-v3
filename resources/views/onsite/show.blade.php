@@ -7,6 +7,9 @@
       <div class="panel-body">
         <h4>
           {{ $contest->title }}
+          @role('admin')
+          <a href="/onsite/{{ $contest->id }}/edit" class="btn btn-sm btn-primary">@icon('pencil')修改</a>
+          @endrole
           <div class="pull-right">
             <small>{{ $contest->registrants()->count() }}人已报名</small>
             @if ($contest->registration())
@@ -88,7 +91,7 @@
                 </div>
               </div>
             </form>
-          @else
+          @elseif (Auth::check())
             <form action="/onsite/{{ $contest->id }}/register" method="post" class="form-horizontal">
               {{ csrf_field() }}
               <div class="form-group">
@@ -141,6 +144,8 @@
                 </div>
               </div>
             </form>
+          @else
+            请先登录
           @endif
         @else
           {{-- out of register time --}}
@@ -148,6 +153,22 @@
         @endif
       </div>
     </div>
+    @role('admin')
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">报名列表</h3>
+      </div>
+      <div class="panel-body">
+        @foreach ($contest->registrations()->get() as $registration)
+          <div>
+            {{ $registration->realname }} <small>{{ $registration->email }}</small>
+            <br>
+            <small>{{ $registration->location1 }} {{ $registration->location2 }} {{ $registration->sid }}</small>
+          </div>
+        @endforeach
+      </div>
+    </div>
+    @endrole
   </div>
 </div>
 @endsection

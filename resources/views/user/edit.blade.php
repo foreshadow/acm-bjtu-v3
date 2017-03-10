@@ -8,12 +8,6 @@
         <h3 class="panel-title">修改资料</h3>
       </div>
       <div class="panel-body">
-        @if (count($errors) > 0)
-        <div class="alert alert-danger">
-          <strong>修改失败</strong> 输入不符合要求<br><br>
-          {!! implode('<br>', $errors->all()) !!}
-        </div>
-        @endif
         <div class="col-md-9">
         {{ Form::open(['url' => 'user/' . Auth::id(), 'method' => 'post',  'enctype' => 'multipart/form-data', 'class' => 'form-horizontal']) }}
           {{ method_field('PUT') }}
@@ -56,21 +50,21 @@
             <div class="col-md-4">
               {{ Form::text('location1', Auth::user()->location1, ['class' => 'input-sm form-control']) }}
             </div>
-            <span class="help-block"></span>
+            <span class="help-block">学校全名</span>
           </div>
           <div class="form-group form-group-sm">
             {{ Form::label('', '学院', ['class' => 'col-md-4 control-label']) }}
             <div class="col-md-4">
               {{ Form::text('location2', Auth::user()->location2, ['class' => 'input-sm form-control']) }}
             </div>
-            <span class="help-block"></span>
+            <span class="help-block">学院名称</span>
           </div>
           <div class="form-group form-group-sm">
             {{ Form::label('', 'Codeforces handle', ['class' => 'col-md-4 control-label']) }}
             <div class="col-md-4">
               {{ Form::text('handle', Auth::user()->handle, ['class' => 'input-sm form-control']) }}
             </div>
-            <span class="help-block">显示Codeforces状态！</span>
+            <span class="help-block">显示Codeforces rating！</span>
           </div>
           <!-- <div class="form-group form-group-sm">
             {{ Form::label('', '手机', ['class' => 'col-md-4 control-label']) }}

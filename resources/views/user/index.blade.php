@@ -13,7 +13,7 @@
           <p class="pull-right"><span class="text-muted">上次在线 {{ relative_time(strtotime($user->active_at) - time()) }}</span></p>
           @endif
           <a href="/user/{{ $user->id }}">{{ $user->name }}</a>
-          @role('admin | superadmin')
+          @role('admin')
           @foreach ($user->roles as $role)
           <span class="label label-info">{{ $role->name }}</span>
           @endforeach

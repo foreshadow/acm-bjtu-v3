@@ -24,6 +24,14 @@ function greetings()
     }
 }
 
+function htmldatetime($time)
+{
+    if (is_string($time)) {
+        $time = strtotime($time);
+    }
+    return date('Y-m-d\TH:i', $time);
+}
+
 function sqlnow()
 {
     return date('Y-m-d H:i:s');

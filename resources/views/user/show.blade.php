@@ -17,7 +17,7 @@
           <h3>
             {{ $user->name }}
             <small>
-              @role('admin | superadmin')
+              @role('admin')
               @foreach ($user->roles as $role)
               <span class="label label-info">{{ $role->name }}</span>
               @endforeach

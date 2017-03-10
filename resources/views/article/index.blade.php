@@ -8,11 +8,6 @@
         <h3 class="panel-title">文章管理</h3>
       </div>
       <div class="panel-body">
-        @if (count($errors) > 0)
-        <div class="alert alert-danger">
-          {!! implode('<br>', $errors->all()) !!}
-        </div>
-        @endif
         <a href="/article/create" class="btn btn-sm btn-success">@icon('plus')新建</a>
       </div>
       <ul class="list-group">

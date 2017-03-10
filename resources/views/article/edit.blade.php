@@ -8,14 +8,6 @@
         <h3 class="panel-title">修改文章</h3>
       </div>
       <div class="panel-body">
-
-        @if (count($errors) > 0)
-          <div class="alert alert-danger">
-            <strong>发布失败</strong> 输入不符合要求<br><br>
-            {!! implode('<br>', $errors->all()) !!}
-          </div>
-        @endif
-
         {{ Form::open(['url' => 'article/' . $article->id, 'method' => 'post']) }}
           {{ method_field('PUT') }}
           <input type="text" name="title" class="form-control" required="required" placeholder="标题" value="{{ $article->title }}">

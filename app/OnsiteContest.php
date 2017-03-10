@@ -13,8 +13,16 @@ class OnsiteContest extends Model
         return $this->belongsToMany('App\User', 'onsite_contest_registrations');
     }
 
+    public function registrations()
+    {
+        return $this->hasMany('App\OnsiteContestRegistration');
+    }
+
     public function registration(User $user = null)
     {
+        if (!Auth::check()) {
+            return null;
+        }
         if ($user == null && Auth::check()) {
             $user = Auth::user();
         }

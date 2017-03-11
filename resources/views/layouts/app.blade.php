@@ -17,6 +17,8 @@
   <!-- jQuery confirm -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.css">
 
+  @stack('head')
+
   <!-- Scripts -->
   <script>window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(),]); ?></script>
 </head>

@@ -5,85 +5,97 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 @media screen {
-    body {
+    .problem-print {
         max-width: 780px;
-        margin: auto;
-        margin-top: 20px;
+        margin: 20px auto auto;
         border: 1px solid lightgray;
-        padding: 30px 60px 0 60px;
-    }
-}
+        box-shadow: 0 0 30px 5px;
 
-@media print {
-    body {
-        padding: 0 4%;
-    }
-}
+        .aspect-ratio {
+            height: 0;
+            padding-bottom: 141.42%;
 
-hr {
-    margin: 0;
-    border-top: 1px solid black;
-}
-
-header {
-    .contest-title {
-        @extend small;
-        @extend .text-center;
-        margin-bottom: 0;
-    }
-}
-
-footer {
-    @extend .hidden;
-
-    .page-number {
-        @extend small;
-        @extend .text-center;
-        margin-bottom: 0;
-    }
-}
-
-article {
-    padding: 0 3px;
-}
-
-.problem-title {
-    margin-top: 6px;
-}
-
-.problem-limits {
-    margin-left: 30px;
-    @extend small;
-}
-
-.problem-description {
-    margin-top: 15px;
-}
-
-.subtitle {
-    font-weight: bold;
-}
-
-table {
-    width: 100%;
-
-    td {
-        border: 1px solid black;
-    }
-
-    thead {
-        td {
-            @extend .text-center;
+            .page {
+                padding: 30px 60px;
+            }
         }
     }
 }
 
-.sample-input,
-.sample-output {
-    @extend code;
-    @extend pre;
-    margin: 0;
-    padding: 0 0 0 9px;
-    border: none;
-    font-size: initial;
+@media print {
+    .problem-print {
+        padding: 0 4%;
+    }
+}
+
+.problem-print {
+    color: initial;
+
+    hr {
+        margin: 0;
+        border-top: 1px solid black;
+    }
+
+    header {
+        .contest-title {
+            @extend small;
+            @extend .text-center;
+            margin-bottom: 0;
+        }
+    }
+
+    footer {
+        @extend .hidden;
+
+        .page-number {
+            @extend small;
+            @extend .text-center;
+            margin-bottom: 0;
+        }
+    }
+
+    article {
+        padding: 0 3px;
+    }
+
+    .problem-title {
+        margin-top: 6px;
+    }
+
+    .problem-limits {
+        margin-left: 30px;
+        @extend small;
+    }
+
+    .problem-description {
+        margin-top: 15px;
+    }
+
+    .subtitle {
+        font-weight: bold;
+    }
+
+    table {
+        width: 100%;
+
+        td {
+            border: 1px solid black;
+        }
+
+        thead {
+            td {
+                @extend .text-center;
+            }
+        }
+    }
+
+    .sample-input,
+    .sample-output {
+        @extend code;
+        @extend pre;
+        margin: 0;
+        padding: 0 0 0 9px;
+        border: none;
+        font-size: initial;
+    }
 }

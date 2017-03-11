@@ -8,48 +8,49 @@
         <h3 class="panel-title">新建题目</h3>
       </div>
       <div class="panel-body">
-        <form action="/problem" method="post">
+        <form action="/problem/{{ $problem->id }}" method="post">
           {{ csrf_field() }}
+          {{ method_field('PUT') }}
           <div class="form-group">
             <label for="title">标题</label>
-            <input type="text" name="title" id="title" class="form-control" required>
+            <input type="text" name="title" id="title" class="form-control" value="{{ $problem->title }}" required>
           </div>
           <div class="row">
             <div class="form-group col-md-6">
               <label for="time">时间限制</label>
               <div class="input-group">
-                <input type="text" name="time" id="time" class="form-control" value="1000" required>
+                <input type="text" name="time" id="time" class="form-control" value="{{ $problem->time }}" required>
                 <span class="input-group-addon">ms</span>
               </div>
             </div>
             <div class="form-group col-md-6">
               <label for="memory">内存限制</label>
               <div class="input-group">
-                <input type="text" name="memory" id="memory" class="form-control" value="64" required>
+                <input type="text" name="memory" id="memory" class="form-control" value="{{ $problem->memory }}" required>
                 <span class="input-group-addon">MB</span>
               </div>
             </div>
           </div>
           <div class="form-group">
             <label for="description">描述</label>
-            <textarea name="description" rows="3" id="description" class="form-control" required>Hello world!</textarea>
+            <textarea name="description" rows="3" id="description" class="form-control" required>{{ $problem->description }}</textarea>
           </div>
           <div class="form-group">
             <label for="input">输入</label>
-            <textarea name="input" rows="3" id="input" class="form-control" required></textarea>
+            <textarea name="input" rows="3" id="input" class="form-control" required>{{ $problem->input }}</textarea>
           </div>
           <div class="form-group">
             <label for="output">输出</label>
-            <textarea name="output" rows="3" id="output" class="form-control" required></textarea>
+            <textarea name="output" rows="3" id="output" class="form-control" required>{{ $problem->output }}</textarea>
           </div>
           <div class="row">
             <div class="col-md-6 form-group">
               <label for="sample-in">样例输入</label>
-              <textarea name="sample_in" rows="3" id="sample-in" class="col-md-6 form-control" required></textarea>
+              <textarea name="sample_in" rows="3" id="sample-in" class="col-md-6 form-control" required>{{ $problem->sample_in }}</textarea>
             </div>
             <div class="col-md-6 form-group">
               <label for="sample-out">样例输出</label>
-              <textarea name="sample_out" rows="3" id="sample-out" class="col-md-6 form-control" required></textarea>
+              <textarea name="sample_out" rows="3" id="sample-out" class="col-md-6 form-control" required>{{ $problem->sample_out }}</textarea>
             </div>
           </div>
           <button type="submit" class="btn btn-sm btn-primary">@icon('send')提交</button>

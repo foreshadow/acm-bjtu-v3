@@ -3,7 +3,7 @@
     <h3 class="panel-title">在线比赛</h3>
   </div>
   <ul class="list-group">
-    @foreach (App\InfoContest::filter(4) as $contest)
+    @foreach (App\InfoContest::filter(isset($info_size) ? $info_size : 6) as $contest)
     <li class="list-group-item">
       <h4 class="hidden text-center">
         @if ($contest['startTimeSeconds'] >= time())

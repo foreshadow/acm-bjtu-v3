@@ -49,3 +49,7 @@ Route::get('contest', function () {
 });
 Route::resource('onsite', 'OnsiteContestController');
 Route::resource('onsite/{id}/register', 'OnlineContestRegistrantController');
+
+Route::get('/print', function() {
+    return view('print');
+});

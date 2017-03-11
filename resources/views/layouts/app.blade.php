@@ -60,6 +60,9 @@
             {{-- <li><a href="/report">反馈</a></li> --}}
             {{-- <li><a href="/pastebin">Pastebin</a></li> --}}
             <li><a href="/onsite">校赛报名</a></li>
+            @role('bjtuacm')
+            <li><a href="/problem">校赛出题</a></li>
+            @endrole
           </ul>
 
           <!-- Right Side Of Navbar -->

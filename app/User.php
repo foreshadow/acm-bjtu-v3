@@ -58,4 +58,17 @@ class User extends Authenticatable
     {
         return $this->belongsTo('\App\CodeforcesUser', 'handle', 'handle');
     }
+
+    public function assignableRoles($user_id = null)
+    {
+        $collection = $this->getRoles();
+        if ($user_id) {
+            $collection = $collection->diff(User::find($user_id)->getRoles());
+        }
+        $roles = [];
+        foreach ($collection as $role) {
+            $roles[$role->slug] = $role->name;
+        }
+        return $roles;
+    }
 }

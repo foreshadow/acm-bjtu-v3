@@ -38,6 +38,7 @@ Route::group(['prefix' => 'oj', 'namespace' => 'OJ'], function () {
     Route::resource('problem', 'ProblemController');
 });
 
+Route::post('user/{id}/role', 'UserController@addRole');
 Route::resource('user', 'UserController');
 Route::resource('article', 'ArticleController');
 Route::resource('comment', 'CommentController');

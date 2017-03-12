@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Ultraware\Roles\Models\Role;
 
 class UserController extends Controller
 {
@@ -48,9 +49,21 @@ class UserController extends Controller
         }
 
         if ($user->save()) {
-            return redirect('user/' . $id)->with('alert', ['message'=>'修改成功', 'type'=>'success', 'icon' => 'ok']);
+            return redirect('user/' . $id)->with('alert', success('修改成功'));
         } else {
             return redirect()->back()->withInput();
         }
+    }
+
+    public function addRole($id, Request $request)
+    {
+        $user = User::find($id);
+        $role = Role::where('slug', $request->get('role'))->first();
+        if ($user->attachRole($role)) {
+            // succeeded but returned false
+        } else {
+            // return redirect()->back()->with('alert', failure());
+        }
+        return redirect()->back()->with('alert', success(sprintf('为用户 %s 添加角色 %s 成功', $user->name, $role->name)));
     }
 }

@@ -3,7 +3,7 @@
     <h3 class="panel-title">在线比赛</h3>
   </div>
   <ul class="list-group">
-    @foreach (App\InfoContest::filter(4) as $contest)
+    @foreach (App\InfoContest::filter(isset($all) ? null : 6) as $contest)
     <li class="list-group-item">
       <h4 class="hidden text-center">
         @if ($contest['startTimeSeconds'] >= time())
@@ -46,9 +46,11 @@
       </div>
     </li>
     @endforeach
-    <li class="list-group-item text-center" style="padding: 3px;">
-      <small><a href="/contest" class="link-initial">查看全部</a></small>
-    </li>
+    @if (!(isset($all) && $all))
+      <li class="list-group-item text-center" style="padding: 3px;">
+        <small><a href="/contest" class="link-initial">查看全部</a></small>
+      </li>
+    @endif
   </ul>
 </div>
 <div class="panel panel-default hidden">

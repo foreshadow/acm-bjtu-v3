@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <div class="visible-xs">
-      @include('attention')
+      @include('attention', ['all' => true])
     </div>
     <div class="hidden-xs">
       <div class="panel panel-default">

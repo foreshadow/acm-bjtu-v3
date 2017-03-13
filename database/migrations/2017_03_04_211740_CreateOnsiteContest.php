@@ -16,7 +16,7 @@ class CreateOnsiteContest extends Migration
         Schema::create('onsite_contests', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->string('body');
+            $table->text('body');
             $table->string('renderer');
             $table->string('location');
             $table->timestamp('begin_register_at')->nullable();

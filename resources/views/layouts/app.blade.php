@@ -26,111 +26,111 @@
 <body>
   <div id="app">
     @section('navbar')
-    <nav class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
+      <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+          <div class="navbar-header">
 
-          <!-- Collapsed Hamburger -->
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-            <span class="sr-only">Toggle Navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+            <!-- Collapsed Hamburger -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+              <span class="sr-only">Toggle Navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
 
-          <!-- Branding Image -->
-          <a class="navbar-brand" href="/">
-            {{ config('app.name', 'Laravel') }}
-          </a>
-        </div>
+            <!-- Branding Image -->
+            <a class="navbar-brand" href="/">
+              {{ config('app.name', 'Laravel') }}
+            </a>
+          </div>
 
-        <div class="collapse navbar-collapse" id="app-navbar-collapse">
-          <!-- Left Side Of Navbar -->
-          <ul class="nav navbar-nav">
-            <li><a href="/">首页</a></li>
-            <li class="dropdown hidden">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">测评 <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="/oj">测评首页</a></li>
-                <li><a href="/oj/problem">题目列表</a></li>
-                <li><a href="/oj/submission">提交状态</a></li>
-              </ul>
-            </li>
-            {{-- <li><a href="/blog">博客</a></li> --}}
-            <li><a href="/contest">比赛</a></li>
-            <li><a href="/user">用户</a></li>
-            {{-- <li><a href="/report">反馈</a></li> --}}
-            {{-- <li><a href="/pastebin">Pastebin</a></li> --}}
-            <li><a href="/onsite">校赛报名</a></li>
-            @role('bjtuacm')
-            <li><a href="/problem">校赛出题</a></li>
-            @endrole
-          </ul>
-
-          <!-- Right Side Of Navbar -->
-          <ul class="nav navbar-nav navbar-right">
-            <!-- Authentication Links -->
-            @if (Auth::guest())
-              <li><a href="/login">登录</a></li>
-              <li><a href="/register">注册</a></li>
-            @else
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                  <div class="avatar avatar-sm">
-                    <img src="{{ Auth::user()->url() }}">
-                  </div>
-                  <strong>{{ Auth::user()->name }}</strong>
-                  <small>{{ Auth::user()->email }}</small>
-                  <span class="caret"></span>
-                </a>
-
+          <div class="collapse navbar-collapse" id="app-navbar-collapse">
+            <!-- Left Side Of Navbar -->
+            <ul class="nav navbar-nav">
+              <li><a href="/">首页</a></li>
+              <li class="dropdown hidden">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">测评 <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="/dashboard">个人中心</a></li>
-                  <li class="divider"></li>
-                  <li>
-                    <a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">退出登录</a>
-                    <form id="logout-form" action="/logout" method="POST" style="display: none;">{{ csrf_field() }}</form>
-                  </li>
+                  <li><a href="/oj">测评首页</a></li>
+                  <li><a href="/oj/problem">题目列表</a></li>
+                  <li><a href="/oj/submission">提交状态</a></li>
                 </ul>
               </li>
+              {{-- <li><a href="/blog">博客</a></li> --}}
+              <li><a href="/contest">比赛</a></li>
+              <li><a href="/user">用户</a></li>
+              {{-- <li><a href="/report">反馈</a></li> --}}
+              {{-- <li><a href="/pastebin">Pastebin</a></li> --}}
+              <li><a href="/onsite">校赛报名</a></li>
+              @role('bjtuacm')
+              <li><a href="/problem">校赛出题</a></li>
+              @endrole
+            </ul>
+
+            <!-- Right Side Of Navbar -->
+            <ul class="nav navbar-nav navbar-right">
+              <!-- Authentication Links -->
+              @if (Auth::guest())
+                <li><a href="/login">登录</a></li>
+                <li><a href="/register">注册</a></li>
+              @else
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    <div class="avatar avatar-sm">
+                      <img src="{{ Auth::user()->url() }}">
+                    </div>
+                    <strong>{{ Auth::user()->name }}</strong>
+                    <small>{{ Auth::user()->email }}</small>
+                    <span class="caret"></span>
+                  </a>
+
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="/dashboard">个人中心</a></li>
+                    <li class="divider"></li>
+                    <li>
+                      <a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">退出登录</a>
+                      <form id="logout-form" action="/logout" method="POST" style="display: none;">{{ csrf_field() }}</form>
+                    </li>
+                  </ul>
+                </li>
+              @endif
+            </ul>
+          </div>
+        </div>
+      </nav>
+      @if (session('alert') !== null)
+        <div class="alert alert-fluid alert-dismissible alert-{{ session('alert')['type'] }}">
+          <div class="container">
+            <button type="button" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">Close</span>
+            </button>
+            <span>
+            @if (isset(session('alert')['icon']))
+              <span class="glyphicon glyphicon-{{ session('alert')['icon'] }}"></span>&emsp;{{ session('alert')['message'] }}
+            @else
+              {{ session('alert')['message'] }}
             @endif
-          </ul>
+            </span>
+          </div>
         </div>
-      </div>
-    </nav>
+      @elseif (count($errors) > 0)
+        <div class="alert alert-fluid alert-dismissible alert-danger">
+          <div class="container">
+            <button type="button" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">Close</span>
+            </button>
+            <span>
+              <span class="glyphicon glyphicon-remove"></span>&emsp;
+              @foreach ($errors->all() as $error)
+                {{ $error }}
+              @endforeach
+            </span>
+          </div>
+        </div>
+      @endif
     @show
-    @if (session('alert') !== null)
-      <div class="alert alert-fluid alert-dismissible alert-{{ session('alert')['type'] }}">
-        <div class="container">
-          <button type="button" class="close" data-dismiss="alert">
-            <span aria-hidden="true">&times;</span>
-            <span class="sr-only">Close</span>
-          </button>
-          <span>
-          @if (isset(session('alert')['icon']))
-            <span class="glyphicon glyphicon-{{ session('alert')['icon'] }}"></span>&emsp;{{ session('alert')['message'] }}
-          @else
-            {{ session('alert')['message'] }}
-          @endif
-          </span>
-        </div>
-      </div>
-    @elseif (count($errors) > 0)
-      <div class="alert alert-fluid alert-dismissible alert-danger">
-        <div class="container">
-          <button type="button" class="close" data-dismiss="alert">
-            <span aria-hidden="true">&times;</span>
-            <span class="sr-only">Close</span>
-          </button>
-          <span>
-            <span class="glyphicon glyphicon-remove"></span>&emsp;
-            @foreach ($errors->all() as $error)
-              {{ $error }}
-            @endforeach
-          </span>
-        </div>
-      </div>
-    @endif
     <div class="container">
       @yield('content')
     </div>

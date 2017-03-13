@@ -42,7 +42,7 @@ class Article extends Model
 
     public function excerpt($length = 240)
     {
-        return mb_substr($this->body, 0, $excerpt);
+        return mb_substr($this->body, 0, $length);
     }
 
     public function text($lines = 5)

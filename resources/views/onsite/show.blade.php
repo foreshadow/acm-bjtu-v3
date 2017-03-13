@@ -16,11 +16,11 @@
             </div>
           @endif
         </h4>
-        <p>
+        <div>
           @icon('time'){{ $contest->begin_at }} ~ {{ $contest->end_at }}<br>
           @icon('home'){{ $contest->location }}<br>
           @icon('user'){{ $contest->registrants()->count() }}
-        </p>
+        </div>
         <small>报名时间 {{ $contest->begin_register_at }} ~ {{ $contest->end_register_at }}</small>
         <hr>
         <div>{!! (new Parsedown())->text($contest->body) !!}</div>

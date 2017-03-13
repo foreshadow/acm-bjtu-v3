@@ -7,17 +7,20 @@
       <div class="panel-body">
         <h4>
           {{ $contest->title }}
-          @role('admin')
-          <a href="/onsite/{{ $contest->id }}/edit" class="btn btn-sm btn-primary">@icon('pencil')修改</a>
-          @endrole
-          <div class="pull-right">
-            <small>{{ $contest->registrants()->count() }}人已报名</small>
-            @if ($contest->registration())
+          @if ($contest->registration())
+            <div class="pull-right">
+              @role('admin')
+              <a href="/onsite/{{ $contest->id }}/edit" class="btn btn-sm btn-primary">@icon('pencil')修改</a>
+              @endrole
               <a class="btn btn-sm btn-success disabled" style="opacity: 1;">@icon('ok')已报名</a>
-            @endif
-          </div>
+            </div>
+          @endif
         </h4>
-        <p>{{ $contest->begin_at }}<br>{{ $contest->location }}</p>
+        <p>
+          @icon('time'){{ $contest->begin_at }} ~ {{ $contest->end_at }}<br>
+          @icon('home'){{ $contest->location }}<br>
+          @icon('user'){{ $contest->registrants()->count() }}
+        </p>
         <small>报名时间 {{ $contest->begin_register_at }} ~ {{ $contest->end_register_at }}</small>
         <hr>
         <div>{!! (new Parsedown())->text($contest->body) !!}</div>

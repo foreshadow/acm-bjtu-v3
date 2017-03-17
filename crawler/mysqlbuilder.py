@@ -29,7 +29,7 @@ class database:
         try:
             self.auto_insert(array, table)
         except Exception, e:
-            print e
+            self.__err(e)
             self.__err('Insert failed, row exist?')
             self.auto_update(array, table, primarykey)
 

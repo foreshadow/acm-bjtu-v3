@@ -9,14 +9,16 @@ if __name__ == '__main__':
     db = mysqlbuilder.database(debug = True)
     db.query('select handle from users', [])
     for row in db.cursor.fetchall():
-         handle = row[0]
-         print handle
-         html = urllib.urlopen(url.format(handle, count)).read()
-         j = json.loads(html)
-         for row in j['result']:
-             author = row.pop('author')
-             problem = row.pop('problem')
-             row['handle'] = handle
-             row['index'] = problem['index']
-             row['name'] = problem['name']
-             db.insert_or_update(row, 'codeforces_statuses', 'id')
+        handle = row[0]
+        if handle:
+            html = urllib.urlopen(url.format(handle, count)).read()
+            j = json.loads(html)
+            print handle, j['status']
+            if j['status'] == 'OK' :
+                for row in j['result']:
+                    author = row.pop('author')
+                    problem = row.pop('problem')
+                    row['handle'] = handle
+                    row['index'] = problem['index']
+                    row['name'] = problem['name']
+                    db.insert_or_update(row, 'codeforces_statuses', 'id')

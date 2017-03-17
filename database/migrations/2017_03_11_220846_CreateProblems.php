@@ -21,8 +21,10 @@ class CreateProblems extends Migration
             $table->text('description');
             $table->text('input');
             $table->text('output');
-            $table->text('sample_in');
+            $table->text('sample_in')->nullable();
             $table->text('sample_out');
+            $table->text('generator')->nullable();
+            $table->text('solution')->nullable();
             $table->integer('user_id');
             $table->timestamps();
         });

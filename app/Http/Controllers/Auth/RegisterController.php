@@ -25,9 +25,12 @@ class RegisterController extends Controller
     /**
      * Where to redirect users after registration.
      *
-     * @var string
+     * @return string
      */
-    protected $redirectTo = '/dashboard';
+    protected function redirectTo()
+    {
+        return '/user/' . \Auth::id() . '/edit';
+    }
 
     /**
      * Create a new controller instance.

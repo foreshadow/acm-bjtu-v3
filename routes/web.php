@@ -39,6 +39,8 @@ Route::group(['prefix' => 'oj', 'namespace' => 'OJ'], function () {
 });
 
 Route::post('user/{id}/role', 'UserController@addRole');
+Route::delete('user/{id}/role', 'UserController@deleteRole');
+
 Route::resource('user', 'UserController');
 Route::resource('article', 'ArticleController');
 Route::resource('comment', 'CommentController');

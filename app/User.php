@@ -59,6 +59,15 @@ class User extends Authenticatable
         return $this->belongsTo('\App\CodeforcesUser', 'handle', 'handle');
     }
 
+    public function level()
+    {
+        $level = 0;
+        foreach ($this->getRoles() as $role) {
+            $level = max($level, $role->level);
+        }
+        return $level;
+    }
+
     public function assignableRoles($user_id = null)
     {
         $collection = $this->getRoles();
@@ -67,7 +76,9 @@ class User extends Authenticatable
         }
         $roles = [];
         foreach ($collection as $role) {
-            $roles[$role->slug] = $role->name;
+            if ($role->level < $this->level()) {
+                $roles[$role->slug] = $role->name;
+            }
         }
         return $roles;
     }

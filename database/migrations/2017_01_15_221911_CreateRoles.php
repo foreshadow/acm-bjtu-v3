@@ -10,10 +10,10 @@ class CreateRoles extends Migration
      */
     public function up()
     {
-        Role::create(['name' => 'Super Admin', 'slug' => 'superadmin']);
-        Role::create(['name' => 'Admin', 'slug' => 'admin']);
-        Role::create(['name' => 'Bjtu ACMer', 'slug' => 'bjtuacm']);
-        Role::create(['name' => 'Registered User', 'slug' => 'registereduser']);
+        Role::create(['name' => 'Super Admin', 'slug' => 'superadmin', 'level' => 4]);
+        Role::create(['name' => 'Admin', 'slug' => 'admin', 'level' => 3]);
+        Role::create(['name' => 'Bjtu ACMer', 'slug' => 'bjtuacm', 'level' => 2]);
+        Role::create(['name' => 'Registered User', 'slug' => 'registereduser', 'level' => 1]);
     }
 
     /**
@@ -21,9 +21,9 @@ class CreateRoles extends Migration
      */
     public function down()
     {
-        Role::where('slug', '=', 'superadmin')->delete();
-        Role::where('slug', '=', 'admin')->delete();
-        Role::where('slug', '=', 'bjtuacm')->delete();
-        Role::where('slug', '=', 'registereduser')->delete();
+        Role::where('slug', 'superadmin')->delete();
+        Role::where('slug', 'admin')->delete();
+        Role::where('slug', 'bjtuacm')->delete();
+        Role::where('slug', 'registereduser')->delete();
     }
 }

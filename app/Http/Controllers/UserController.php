@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Ultraware\Roles\Models\Role;
+use Auth;
 
 class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['show']]);
+        $this->middleware('auth')->except('show');
+        $this->middleware('role:admin')->only('addRole');
     }
 
     public function index()
@@ -59,11 +61,30 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $role = Role::where('slug', $request->get('role'))->first();
-        if ($user->attachRole($role)) {
-            // succeeded but returned false
+        if (in_array($role->name, Auth::user()->assignableRoles($user->id))) {
+            if ($user->attachRole($role)) {
+                // succeeded but returned false
+            } else {
+                // return redirect()->back()->with('alert', failure());
+            }
+            return redirect()->back()->with('alert', success(sprintf('为用户 %s 添加角色 %s 成功', $user->name, $role->name)));
         } else {
-            // return redirect()->back()->with('alert', failure());
+            return redirect()->back()->with('alert', failure(sprintf('为用户 %s 添加角色 %s 失败', $user->name, $role->name)));
         }
-        return redirect()->back()->with('alert', success(sprintf('为用户 %s 添加角色 %s 成功', $user->name, $role->name)));
+    }
+
+    public function deleteRole($id, Request $request)
+    {
+        $user = User::find($id);
+        $role = Role::where('slug', $request->get('role'))->first();
+        if (Auth::user()->level() > $user->level()) {
+            if ($user->detachRole($role)) {
+                return redirect()->back()->with('alert', success(sprintf('为用户 %s 删除角色 %s 成功', $user->name, $role->name)));
+            } else {
+                return redirect()->back()->with('alert', failure(sprintf('为用户 %s 删除角色 %s 失败', $user->name, $role->name)));
+            }
+        } else {
+            return redirect()->back()->with('alert', failure('权限不足'));
+        }
     }
 }

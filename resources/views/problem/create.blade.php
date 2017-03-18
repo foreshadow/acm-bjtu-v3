@@ -32,7 +32,7 @@
           </div>
           <div class="form-group">
             <label for="description">描述</label>
-            <textarea name="description" rows="3" id="description" class="form-control" required>Hello world!</textarea>
+            <textarea name="description" rows="3" id="description" class="form-control" required></textarea>
           </div>
           <div class="form-group">
             <label for="input">输入</label>

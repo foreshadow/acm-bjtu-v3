@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Problem;
 use Auth;
+use Storage;
 
 class ProblemController extends Controller
 {
@@ -41,10 +42,22 @@ class ProblemController extends Controller
             $problem->{$key} = $value;
         }
         if ($problem->save()) {
-            return redirect('problem')->with('alert', ['message'=>'新建成功', 'type'=>'success', 'icon' => 'ok']);
-        } else {
-            return redirect()->back()->withInput();
+            if ($request->hasFile('generator')) {
+                $file = $request->file('generator');
+                $ext = $file->getClientOriginalExtension();
+                $problem->generator = $file->storePubliclyAs('public/problem/' . $problem->id, 'generator.' . $ext);
+            }
+            if ($request->hasFile('solution')) {
+                $file = $request->file('solution');
+                $ext = $file->getClientOriginalExtension();
+                $problem->solution = $file->storePubliclyAs('public/problem/' . $problem->id, 'solution.' . $ext);
+            }
+            if ($problem->save()) {
+                return redirect('problem/' . $problem->id)->with('alert', ['message'=>'新建成功', 'type'=>'success', 'icon' => 'ok']);
+            }
         }
+
+        return redirect()->back()->withInput();
     }
 
     public function edit($id)
@@ -55,13 +68,25 @@ class ProblemController extends Controller
     public function update($id, Request $request)
     {
         $problem = Problem::find($id);
-        foreach ($request->except(['_token', '_method']) as $key => $value) {
+        foreach ($request->except(['_token', '_method', 'generator', 'solution']) as $key => $value) {
             $problem->{$key} = $value;
         }
         if ($problem->save()) {
-            return redirect('problem')->with('alert', ['message'=>'修改成功', 'type'=>'success', 'icon' => 'ok']);
-        } else {
-            return redirect()->back()->withInput();
+            if ($request->hasFile('generator')) {
+                $file = $request->file('generator');
+                $ext = $file->getClientOriginalExtension();
+                $problem->generator = $file->storePubliclyAs('public/problem/' . $problem->id, 'generator.' . $ext);
+            }
+            if ($request->hasFile('solution')) {
+                $file = $request->file('solution');
+                $ext = $file->getClientOriginalExtension();
+                $problem->solution = $file->storePubliclyAs('public/problem/' . $problem->id, 'solution.' . $ext);
+            }
+            if ($problem->save()) {
+                return redirect('problem/' . $id)->with('alert', ['message'=>'修改成功', 'type'=>'success', 'icon' => 'ok']);
+            }
         }
+
+        return redirect()->back()->withInput();
     }
 }

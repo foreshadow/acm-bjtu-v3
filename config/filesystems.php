@@ -42,7 +42,7 @@ return [
     */
 
     'disks' => [
-
+        
         'img' => [
             'driver' => 'local',
             'root' => 'img'

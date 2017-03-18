@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.md')
 
 @section('content')
 <div class="row">
@@ -24,6 +24,36 @@
             @include('print')
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">文件</h3>
+      </div>
+      <div class="panel-body">
+        @if ($problem->generator)
+          <h4>
+            <a href="{{ Storage::url($problem->generator) }}">{{ ucfirst(explode('/', $problem->generator)[3]) }}</a>
+            <div class="pull-right"><small>{{ Storage::size($problem->generator) }} 字节</small></div>
+            <div><small>修改于 {{  date('Y/n/j G:i', Storage::lastModified($problem->generator)) }}</small></div>
+          </h4>
+          {{-- <pre><code>{{ substr(Storage::get($problem->generator), 0, 256) }}</code></pre> --}}
+        @else
+          No generator
+        @endif
+        <hr>
+        @if ($problem->solution)
+          <h4>
+            <a href="{{ Storage::url($problem->solution) }}">{{ ucfirst(explode('/', $problem->solution)[3]) }}</a>
+            <div class="pull-right"><small>{{ Storage::size($problem->solution) }} 字节</small></div>
+            <div><small>修改于 {{  date('Y/n/j G:i', Storage::lastModified($problem->solution)) }}</small></div>
+          </h4>
+          {{-- <pre><code>{{ substr(Storage::get($problem->solution), 0, 256) }}</code></pre> --}}
+        @else
+          No solution
+        @endif
       </div>
     </div>
   </div>

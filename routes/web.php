@@ -56,3 +56,11 @@ Route::resource('problem', 'ProblemController');
 Route::get('/print', function() {
     return view('print');
 });
+
+Route::get('/storage/*', function () {
+    return 'hah';
+});
+
+Route::get('/storage/problem/{id}/{file}', function ($id, $file) {
+    return view('raw')->with('content', file_get_contents(storage_path() . '/app/public/problem/' . $id . '/' . $file));
+});

@@ -2,7 +2,7 @@
   <div class="aspect-ratio">
     <div class="page">
       <header>
-        <p class="contest-title">第十一届ACM程序设计竞赛<br>北京交通大学，2017年4月15日 </p>
+        <p class="contest-title">北京交通大学 第十一届ACM程序设计竞赛<br>北京交通大学，2017年4月23日</p>
         <hr>
       </header>
       <article>

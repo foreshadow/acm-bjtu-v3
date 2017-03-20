@@ -89,6 +89,10 @@
         }
     }
 
+    td {
+        vertical-align: top;
+    }
+
     .sample-input,
     .sample-output {
         @extend code;
@@ -96,6 +100,7 @@
         margin: 0;
         padding: 0 0 0 9px;
         border: none;
+        background: white;
         font-size: initial;
         white-space: pre;
     }

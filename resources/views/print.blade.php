@@ -14,7 +14,7 @@
         	内存限制：{{ $problem->memory }} M
         </div>
         <div class="problem-description">
-          {{ $problem->description }}
+          {!! markdownify($problem->description) !!}
         </div>
         <h4 class="subtitle">输入</h4>
         <div class="problem-input">
@@ -35,14 +35,10 @@
           <tbody>
             <tr>
               <td>
-                <div class="sample-input">
-                  {{ $problem->sample_in }}
-                </div>
+                <div class="sample-input">{{ $problem->sample_in }}</div>
               </td>
               <td>
-                <div class="sample-output">
-                  {{ $problem->sample_out }}
-                </div>
+                <div class="sample-output">{{ $problem->sample_out }}</div>
               </td>
             </tr>
           </tbody>

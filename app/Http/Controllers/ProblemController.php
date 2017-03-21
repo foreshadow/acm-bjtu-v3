@@ -63,8 +63,9 @@ class ProblemController extends Controller
 
     public function edit($id)
     {
+        $problem = Problem::find($id);
         if ($problem->user_id == Auth::id() || Auth::user()->hasRole('admin')) {
-            return view('problem.edit')->with('problem', Problem::find($id));
+            return view('problem.edit')->with('problem', $problem);
         } else {
             return redirect('problem')->with('alert', failure('你没有权限这么做'));
         }
@@ -72,8 +73,8 @@ class ProblemController extends Controller
 
     public function update($id, Request $request)
     {
+        $problem = Problem::find($id);
         if ($problem->user_id == Auth::id() || Auth::user()->hasRole('admin')) {
-            $problem = Problem::find($id);
             foreach ($request->except(['_token', '_method', 'generator', 'solution']) as $key => $value) {
                 $problem->{$key} = $value;
             }

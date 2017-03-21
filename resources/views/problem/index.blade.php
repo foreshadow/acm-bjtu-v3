@@ -16,7 +16,7 @@
             <a href="/problem/{{ $problem->id }}">{{ $problem->title }}</a>
             <small>{{ $problem->author->name }}</small>
             ——
-            <small>{{ mb_substr($problem->description, 0, 30) }}</small>
+            <small>{{ mb_substr($problem->description, 0, 30) }}......</small>
           </li>
         @endforeach
       </ul>

@@ -18,11 +18,11 @@
         </div>
         <h4 class="subtitle">输入</h4>
         <div class="problem-input">
-          {{ $problem->input }}
+          {!! markdownify($problem->input) !!}
         </div>
         <h4 class="subtitle">输出</h4>
         <div class="problem-output">
-          {{ $problem->output }}
+          {!! markdownify($problem->output) !!}
         </div>
         <h4 class="subtitle">样例</h4>
         <table>

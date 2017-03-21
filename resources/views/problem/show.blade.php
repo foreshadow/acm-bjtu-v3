@@ -9,7 +9,7 @@
           <li role="presentation" class="active">
             <a href="#markdown" aria-controls="markdown" role="tab" data-toggle="tab">网页预览</a>
           </li>
-          <li role="presentation">
+          <li role="presentation" class="hidden-xs">
             <a href="#print" aria-controls="print" role="tab" data-toggle="tab">打印预览</a>
           </li>
           @if ($problem->user_id == Auth::id() || Auth::user()->hasRole('superadmin'))

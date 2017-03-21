@@ -162,6 +162,9 @@
       $('a[href^="//"]').each(function() {
           $(this).attr('target', '_blank');
       });
+      $('a[href^="https://bjtuacm.org"]').each(function() {
+          $(this).removeAttr('target');
+      });
       $('button[href]').each(function() {
           $(this).attr('onclick', 'window.location.href="' + $(this).attr('href') + '";');
       });

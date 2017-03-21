@@ -11,17 +11,18 @@ class ProblemController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('auth');
         $this->middleware('role:bjtuacm');
     }
 
     public function index()
     {
         // TODO: permission problem in other methods...
-        if (Auth::user()->hasRole('admin')) {
+        // if (Auth::user()->hasRole('admin')) {
             return view('problem.index')->with('problems', Problem::all());
-        } else {
-            return view('problem.index')->with('problems', Problem::my()->get());
-        }
+        // } else {
+        //     return view('problem.index')->with('problems', Problem::my()->get());
+        // }
     }
 
     public function create()
@@ -88,5 +89,17 @@ class ProblemController extends Controller
         }
 
         return redirect()->back()->withInput();
+    }
+
+    public function destroy($id)
+    {
+        $problem = Problem::find($id);
+        if (Auth::id() == $problem->user_id) {
+            if ($problem->delete()) {
+                return redirect('problem')->with('alert', success('删除成功'));
+            }
+        }
+
+        return redirect('problem')->with('alert', failure('删除失败'));
     }
 }

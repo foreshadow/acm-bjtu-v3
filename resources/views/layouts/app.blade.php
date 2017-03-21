@@ -162,6 +162,9 @@
       $('a[href^="//"]').each(function() {
           $(this).attr('target', '_blank');
       });
+      $('button[href]').each(function() {
+          $(this).attr('onclick', 'window.location.href="' + $(this).attr('href') + '";');
+      });
       $('[data-toggle="tooltip"]').tooltip({
           html: true
       });

@@ -6,6 +6,16 @@ textarea {
     resize: none;
 }
 
+ul.nav-tabs li button {
+    margin: 0 6px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
 .input-xs {
     height: 22px;
     border-radius: 3px;
@@ -94,6 +104,7 @@ $avatar: (sm, 32, -6, 0, 9), (md, 48, 0, 0, 0), (lg, 64, 0, 0, 15), (xl, 128, 0,
     color: inherit;
     text-decoration: inherit;
 }
+
 // codeforces
 
 .rated-user {

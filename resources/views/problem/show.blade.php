@@ -12,8 +12,17 @@
           <li role="presentation">
             <a href="#print" aria-controls="print" role="tab" data-toggle="tab">打印预览</a>
           </li>
+          @if ($problem->user_id == Auth::id() || Auth::user()->hasRole('superadmin'))
+            <li role="presentation" class="pull-right">
+              <form action="/problem/{{ $problem->id }}" method="post">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <button type="submit" class="btn btn-danger" data-confirm="确定要删除题目 {{ $problem->title }} 吗？">@icon('trash')删除</button>
+              </form>
+            </li>
+          @endif
           <li role="presentation" class="pull-right">
-            <a href="/problem/{{ $problem->id }}/edit" class="bg-primary">@icon('pencil')修改</a>
+            <button href="/problem/{{ $problem->id }}/edit" class="btn btn-primary">@icon('pencil')修改</button>
           </li>
         </ul>
         <div class="tab-content">

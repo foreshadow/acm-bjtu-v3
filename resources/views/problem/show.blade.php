@@ -21,9 +21,11 @@
               </form>
             </li>
           @endif
-          <li role="presentation" class="pull-right">
-            <button href="/problem/{{ $problem->id }}/edit" class="btn btn-primary">@icon('pencil')修改</button>
-          </li>
+          @if ($problem->user_id == Auth::id() || Auth::user()->hasRole('admin'))
+            <li role="presentation" class="pull-right">
+              <button href="/problem/{{ $problem->id }}/edit" class="btn btn-primary">@icon('pencil')修改</button>
+            </li>
+          @endif
         </ul>
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="markdown">

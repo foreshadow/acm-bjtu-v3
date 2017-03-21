@@ -63,32 +63,39 @@ class ProblemController extends Controller
 
     public function edit($id)
     {
-        return view('problem.edit')->with('problem', Problem::find($id));
+        if ($problem->user_id == Auth::id() || Auth::user()->hasRole('admin')) {
+            return view('problem.edit')->with('problem', Problem::find($id));
+        } else {
+            return redirect('problem')->with('alert', failure('你没有权限这么做'));
+        }
     }
 
     public function update($id, Request $request)
     {
-        $problem = Problem::find($id);
-        foreach ($request->except(['_token', '_method', 'generator', 'solution']) as $key => $value) {
-            $problem->{$key} = $value;
-        }
-        if ($problem->save()) {
-            if ($request->hasFile('generator')) {
-                $file = $request->file('generator');
-                $ext = $file->getClientOriginalExtension();
-                $problem->generator = $file->storePubliclyAs('public/problem/' . $problem->id, 'generator.' . $ext);
-            }
-            if ($request->hasFile('solution')) {
-                $file = $request->file('solution');
-                $ext = $file->getClientOriginalExtension();
-                $problem->solution = $file->storePubliclyAs('public/problem/' . $problem->id, 'solution.' . $ext);
+        if ($problem->user_id == Auth::id() || Auth::user()->hasRole('admin')) {
+            $problem = Problem::find($id);
+            foreach ($request->except(['_token', '_method', 'generator', 'solution']) as $key => $value) {
+                $problem->{$key} = $value;
             }
             if ($problem->save()) {
-                return redirect('problem/' . $id)->with('alert', ['message'=>'修改成功', 'type'=>'success', 'icon' => 'ok']);
+                if ($request->hasFile('generator')) {
+                    $file = $request->file('generator');
+                    $ext = $file->getClientOriginalExtension();
+                    $problem->generator = $file->storePubliclyAs('public/problem/' . $problem->id, 'generator.' . $ext);
+                }
+                if ($request->hasFile('solution')) {
+                    $file = $request->file('solution');
+                    $ext = $file->getClientOriginalExtension();
+                    $problem->solution = $file->storePubliclyAs('public/problem/' . $problem->id, 'solution.' . $ext);
+                }
+                if ($problem->save()) {
+                    return redirect('problem/' . $id)->with('alert', success('修改成功'));
+                }
             }
+            return redirect()->back()->withInput()->with('alert', failure('修改失败'));
+        } else {
+            return redirect('problem')->with('alert', failure('你没有权限这么做'));
         }
-
-        return redirect()->back()->withInput();
     }
 
     public function destroy($id)

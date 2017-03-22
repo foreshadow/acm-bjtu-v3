@@ -13,10 +13,12 @@
       <ul class="list-group">
         @foreach ($problems as $problem)
           <li class="list-group-item">
-            <a href="/problem/{{ $problem->id }}">{{ $problem->title }}</a>
-            <small>{{ $problem->author->name }}</small>
-            ——
-            <small>{{ mb_substr($problem->description, 0, 30) }}......</small>
+            <h4>
+              <small class="pull-right">—— {!! $problem->author->link() !!}</small>
+              <a href="/problem/{{ $problem->id }}">{{ $problem->title }}</a>
+            </h4>
+            <p class="pull-right">修改于{{ $problem->updated_at }}</p>
+            <p class="text-inline" style="padding-right: 30px;">{{ mb_substr($problem->description, 0, 100) }}</p>
           </li>
         @endforeach
       </ul>

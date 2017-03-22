@@ -13,11 +13,11 @@ class OnlineContestRegistrantController extends Controller
         $this->middleware('auth');
     }
 
-    public function store($id, Request $request)
+    public function store($cid, Request $request)
     {
         $reg = new Registration;
         $reg->user_id = Auth::id();
-        $reg->onsite_contest_id = $id;
+        $reg->onsite_contest_id = $cid;
         foreach ($request->only([
             'realname',
             'sid',
@@ -40,9 +40,9 @@ class OnlineContestRegistrantController extends Controller
         }
     }
 
-    public function update($id, Request $request)
+    public function update($cid, $uid, Request $request)
     {
-        $reg = Registration::find($id);
+        $reg = Registration::find($uid);
         if ($reg->user_id == Auth::id()) {
             foreach ($request->only([
                 'email',

@@ -19,7 +19,7 @@ class ProblemController extends Controller
     {
         // TODO: permission problem in other methods...
         // if (Auth::user()->hasRole('admin')) {
-            return view('problem.index')->with('problems', Problem::all());
+            return view('problem.index')->with('problems', Problem::orderBy('updated_at', 'desc')->get());
         // } else {
         //     return view('problem.index')->with('problems', Problem::my()->get());
         // }

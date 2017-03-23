@@ -156,7 +156,7 @@
         @endif
       </div>
     </div>
-    @role('admin')
+    @role('bjtuacm')
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">报名列表</h3>

@@ -64,9 +64,7 @@ ul.nav-tabs li button {
         border-radius: 3px;
     }
 }
-
 $avatar: (sm, 32, -6, 0, 9), (md, 48, 0, 0, 0), (lg, 64, 0, 0, 15), (xl, 128, 0, 15, 0);
-
 @each $label, $size, $mt, $ml, $mr in $avatar {
     .avatar-#{$label} {
         width: $size * 1px;
@@ -85,7 +83,6 @@ $avatar: (sm, 32, -6, 0, 9), (md, 48, 0, 0, 0), (lg, 64, 0, 0, 15), (xl, 128, 0,
         }
     }
 }
-
 @for $i from 1 through 6 {
     .toc-#{$i} {
         margin-left: 30px * ($i - 1);
@@ -104,9 +101,7 @@ $avatar: (sm, 32, -6, 0, 9), (md, 48, 0, 0, 0), (lg, 64, 0, 0, 15), (xl, 128, 0,
     color: inherit;
     text-decoration: inherit;
 }
-
 // codeforces
-
 .rated-user {
     margin-bottom: 0;
 }
@@ -119,4 +114,10 @@ $avatar: (sm, 32, -6, 0, 9), (md, 48, 0, 0, 0), (lg, 64, 0, 0, 15), (xl, 128, 0,
         margin-top: 0;
         margin-bottom: 6px;
     }
+}
+
+.text-inline {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }

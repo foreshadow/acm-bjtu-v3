@@ -17,8 +17,8 @@
               <small class="pull-right">—— {!! $problem->author->link() !!}</small>
               <a href="/problem/{{ $problem->id }}">{{ $problem->title }}</a>
             </h4>
-            <p class="pull-right">修改于{{ $problem->updated_at }}</p>
-            <p class="text-inline" style="padding-right: 30px;">{{ mb_substr($problem->description, 0, 100) }}</p>
+            <p class="pull-right">修改于{{ partial_relative($problem->updated_at) }}</p>
+            <p class="text-inline" style="padding-right: 30px;">{{ mb_substr($problem->description, 0, 256) }}</p>
           </li>
         @endforeach
       </ul>

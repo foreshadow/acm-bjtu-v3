@@ -44,16 +44,16 @@ ul.nav-tabs li button {
 }
 
 .alert-fluid {
-    margin-top: -23px;
-    border-radius: 0;
-    padding-left: 0;
-    padding-right: 0;
-    font-size: 19px;
-    line-height: 30px;
+    margin-top: -23px !important;
+    border-radius: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    font-size: 19px !important;
+    line-height: 30px !important;
 
     .close {
-        top: 3px;
-        right: 0;
+        top: 3px !important;
+        right: 0 !important;
     }
 }
 

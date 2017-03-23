@@ -102,7 +102,7 @@ class ProblemController extends Controller
     public function destroy($id)
     {
         $problem = Problem::find($id);
-        if (Auth::id() == $problem->user_id) {
+        if ($problem->user_id == Auth::id() || Auth::user()->hasRole('admin')) {
             if ($problem->delete()) {
                 return redirect('problem')->with('alert', success('删除成功'));
             }

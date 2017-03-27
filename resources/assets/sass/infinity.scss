@@ -8,6 +8,12 @@ textarea {
     resize: none;
 }
 
+code {
+    /* github gist style */
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 12px;
+}
+
 ul.nav-tabs li button {
     margin: 0 6px;
     border-bottom-left-radius: 0;

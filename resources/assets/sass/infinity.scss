@@ -1,9 +1,17 @@
 body {
     overflow-y: scroll;
+    // font: 16px Lato, 14px Microsoft Yahei, sans-serif !important;
+    // font-size: 16px !important;
 }
 
 textarea {
     resize: none;
+}
+
+code {
+    /* github gist style */
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 12px;
 }
 
 ul.nav-tabs li button {

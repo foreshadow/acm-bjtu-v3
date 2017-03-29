@@ -14,9 +14,6 @@
   <!-- Styles -->
   <link href="/css/app.css" rel="stylesheet">
 
-  <!-- jQuery confirm -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.css">
-
   @stack('head')
 
   <!-- Scripts -->
@@ -148,7 +145,9 @@
 
   <!-- jQuery -->
   <script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-  <!-- jQuery Extension -->
+  
+  <!-- jQuery Extension: jQuery confirm -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.js"></script>
 
   <!-- Bootstrap Core JavaScript -->

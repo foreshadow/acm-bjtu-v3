@@ -21,7 +21,7 @@
               </form>
             </li>
           @endif
-          @if ($problem->user_id == Auth::id() || Auth::user()->hasRole('admin'))
+          @if ($problem->user_id == Auth::id() || ($problem->author->online() == false && Auth::user()->hasRole('admin')))
             <li role="presentation" class="pull-right">
               <button href="/problem/{{ $problem->id }}/edit" class="btn btn-primary">@icon('pencil')修改</button>
             </li>

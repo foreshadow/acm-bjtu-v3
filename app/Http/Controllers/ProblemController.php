@@ -64,7 +64,7 @@ class ProblemController extends Controller
     public function edit($id)
     {
         $problem = Problem::find($id);
-        if ($problem->user_id == Auth::id() || Auth::user()->hasRole('admin')) {
+        if ($problem->user_id == Auth::id() || ($problem->author->online() == false && Auth::user()->hasRole('admin'))) {
             return view('problem.edit')->with('problem', $problem);
         } else {
             return redirect('problem')->with('alert', failure('你没有权限这么做'));

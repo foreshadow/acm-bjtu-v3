@@ -46,7 +46,7 @@
       <div class="panel-body">
         @if ($problem->generator)
           <h4>
-            <a href="{{ Storage::url($problem->generator) }}">{{ ucfirst(explode('/', $problem->generator)[3]) }}</a>
+            <a href="{{ code($problem->generator) }}">{{ ucfirst(explode('/', $problem->generator)[3]) }}</a>
             <div class="pull-right"><small>{{ Storage::size($problem->generator) }} 字节</small></div>
             <div><small>修改于 {{  date('Y/n/j G:i', Storage::lastModified($problem->generator)) }}</small></div>
           </h4>

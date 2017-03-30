@@ -42,11 +42,12 @@ Route::resource('problem', 'ProblemController');
 
 Route::get('/storage/{path}', function ($path) {
     return response()->file(storage_path() . '/app/public/' . $path);
-
 })->where('path', '.+');
 
 Route::get('/code/{path}', function ($path) {
-    return view('raw')->with('content', file_get_contents(storage_path() . '/app/public/' . $path));
+    return view('code')
+        ->with('content', file_get_contents(storage_path() . '/app/public/' . $path))
+        ->with('path', $path);
 })->where('path', '.+');
 
 /*

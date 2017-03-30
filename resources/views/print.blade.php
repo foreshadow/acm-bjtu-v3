@@ -10,8 +10,8 @@
           {{ $problem->title }}
         </h3>
         <div class="problem-limits">
-        	时间限制：{{ $problem->time }} ms<br>
-        	内存限制：{{ $problem->memory }} M
+          时间限制：{{ $problem->time }} ms<br>
+          内存限制：{{ $problem->memory }} M
         </div>
         <div class="problem-description">
           {!! markdownify($problem->description) !!}
@@ -27,20 +27,20 @@
         <h4 class="subtitle">样例</h4>
         <table>
           <thead>
-            <tr>
-              <td>标准输入</td>
-              <td>标准输出</td>
-            </tr>
+          <tr>
+            <td>标准输入</td>
+            <td>标准输出</td>
+          </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <div class="sample-input">{{ $problem->sample_in }}</div>
-              </td>
-              <td>
-                <div class="sample-output">{{ $problem->sample_out }}</div>
-              </td>
-            </tr>
+          <tr>
+            <td>
+              <div class="sample-input">{{ $problem->sample_in }}</div>
+            </td>
+            <td>
+              <div class="sample-output">{{ $problem->sample_out }}</div>
+            </td>
+          </tr>
           </tbody>
         </table>
       </article>

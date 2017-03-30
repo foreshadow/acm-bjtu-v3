@@ -11,22 +11,11 @@
 |
 */
 
-use App\Article;
-use App\Snippet;
-use App\CodeforcesStatus;
-use App\InfoContest;
-
 Route::get('/', function () {
-    return view('index')->with('articles', Article::where('public', '=', true)->orderBy('updated_at', 'desc')->get());
+    return App::make('App\Http\Controllers\RootController')->getIndex();
 });
 
 Auth::routes();
-
-Route::get('dashboard', function () {
-    return view('dashboard')->with('articles', Article::where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get())
-                            ->with('snippets', Snippet::where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get())
-                            ->with('statuses', CodeforcesStatus::where('handle', '=', Auth::user()->handle)->get());
-});
 
 Route::group(['prefix' => 'oj', 'namespace' => 'OJ'], function () {
     Route::get('/', function () {
@@ -38,29 +27,31 @@ Route::group(['prefix' => 'oj', 'namespace' => 'OJ'], function () {
     Route::resource('problem', 'ProblemController');
 });
 
+Route::resource('user', 'UserController');
 Route::post('user/{id}/role', 'UserController@addRole');
 Route::delete('user/{id}/role', 'UserController@deleteRole');
 
-Route::resource('user', 'UserController');
 Route::resource('article', 'ArticleController');
 Route::resource('comment', 'CommentController');
 Route::resource('blog', 'BlogController');
 Route::resource('pastebin', 'PastebinController');
 Route::resource('report', 'ReportController');
-Route::get('contest', function () {
-    return view('contest')->with('contests', InfoContest::filter());
-});
 Route::resource('onsite', 'OnsiteContestController');
 Route::resource('onsite/{id}/register', 'OnlineContestRegistrantController');
 Route::resource('problem', 'ProblemController');
-Route::get('/print', function() {
-    return view('print');
-});
 
-Route::get('/storage/*', function () {
-    return 'hah';
-});
+Route::get('/storage/{path}', function ($path) {
+    return response()->file(storage_path() . '/app/public/' . $path);
 
-Route::get('/storage/problem/{id}/{file}', function ($id, $file) {
-    return view('raw')->with('content', file_get_contents(storage_path() . '/app/public/problem/' . $id . '/' . $file));
+})->where('path', '.+');
+
+Route::get('/code/{path}', function ($path) {
+    return view('raw')->with('content', file_get_contents(storage_path() . '/app/public/' . $path));
+})->where('path', '.+');
+
+/*
+ * Automatic route, Route::controller is deprecated in laravel 5.3
+ */
+Route::get('/{action}', function ($action) {
+    return response(App::make('App\Http\Controllers\RootController')->{'get' . $action}());
 });

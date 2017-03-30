@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Auth;
 use App\OnsiteContestRegistration as Registration;
+use Illuminate\Support\Facades\DB;
 
 class OnsiteContest extends Model
 {
@@ -16,6 +17,14 @@ class OnsiteContest extends Model
     public function registrations()
     {
         return $this->hasMany('App\OnsiteContestRegistration');
+    }
+
+    public function group()
+    {
+        return $this->registrations()
+            ->select(DB::raw('count(*) as count, location1, location2'))
+            ->groupBy(['location1', 'location2'])
+            ->orderBy('count', 'desc');
     }
 
     public function registration(User $user = null)

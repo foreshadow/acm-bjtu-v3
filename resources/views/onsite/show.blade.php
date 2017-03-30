@@ -172,6 +172,18 @@
             @endif
           </div>
         @endforeach
+        <hr>
+        <h4>统计</h4>
+        @foreach ($contest->group()->get() as $registration)
+          <div>
+            {{ $registration->count }} 人 来自
+            @if ($registration->location1 == '北京交通大学')
+              <small>{{ $registration->location2 }}</small>
+            @else
+              <small>{{ $registration->location1 }}</small>
+            @endif
+          </div>
+        @endforeach
       </div>
     </div>
     @endrole

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Article;
-use App\Snippet;
 use App\CodeforcesStatus;
 use App\InfoContest;
+use App\Snippet;
+use Auth;
 
 class RootController extends Controller
 {

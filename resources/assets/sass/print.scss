@@ -30,6 +30,10 @@
 
 .problem-print {
     color: initial;
+    
+    img {
+        max-width: 100%;
+    }
 
     hr {
         margin: 0;

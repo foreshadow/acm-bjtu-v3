@@ -12,7 +12,7 @@
             <li role="presentation" class="hidden-xs">
               <a href="#print" aria-controls="print" role="tab" data-toggle="tab">打印预览</a>
             </li>
-            @if ($problem->user_id == Auth::id() || Auth::user()->hasRole('superadmin'))
+            @if ($problem->user_id == Auth::id() || ($problem->author->online() == false && Auth::user()->hasRole('superadmin')))
               <li role="presentation" class="pull-right">
                 <form action="/problem/{{ $problem->id }}" method="post">
                   {{ csrf_field() }}

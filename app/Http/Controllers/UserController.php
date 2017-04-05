@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\User;
-use Ultraware\Roles\Models\Role;
 use Auth;
+use Illuminate\Http\Request;
+use Ultraware\Roles\Models\Role;
 
 class UserController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth')->except('show');
-        $this->middleware('role:admin')->only('addRole');
+        $this->middleware('role:admin')->only(['addRole', 'deleteRole']);
     }
 
     public function index()
@@ -29,11 +29,19 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        return view('user.edit')->with('user', User::find($id));
+        if (Auth::id() == $id) {
+            return view('user.edit')->with('user', User::find($id));
+        } else {
+            return redirect()->back()->with('alert', failure('权限不足'));
+        }
     }
 
     public function update($id, Request $request)
     {
+        if (Auth::id() != $id) {
+            return redirect()->back()->with('alert', failure('权限不足'));
+        }
+
         $this->validate($request, [
             'name' => 'required|unique:users,name,' . $id,
             'avatar' => 'image|max:1048576'

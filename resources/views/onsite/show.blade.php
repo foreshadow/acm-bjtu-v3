@@ -197,14 +197,7 @@
         </div>
         <div class="panel-body">
           @foreach ($contest->registrations()->get() as $registration)
-            <div>
-              {{ $registration->realname }}
-              @if ($registration->location1 == '北京交通大学')
-                <small>{{ $registration->location2 }}</small>
-              @else
-                <small>{{ $registration->location1 }}</small>
-              @endif
-            </div>
+            <span style="display: inline-block;">{{ $registration->realname }}</span>
           @endforeach
         </div>
       </div>

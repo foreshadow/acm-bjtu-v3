@@ -30,6 +30,7 @@ class OnsiteContest extends Model
             ->where('location1', '!=', '北京交通大学')
             ->groupBy(['location1'])
             ->union($query)
+            ->orderBy('count', 'desc')
             ->get();
     }
 

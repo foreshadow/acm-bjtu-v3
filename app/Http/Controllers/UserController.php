@@ -59,7 +59,7 @@ class UserController extends Controller
         }
 
         if ($user->save()) {
-            return redirect('user/' . $id)->with('alert', success('修改成功'));
+            return redirect('dashboard')->with('alert', success('修改成功'));
         } else {
             return redirect()->back()->withInput();
         }

@@ -21,7 +21,8 @@ class RootController extends Controller
     {
         return view('dashboard')->with('articles', Article::where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get())
             ->with('snippets', Snippet::where('user_id', '=', Auth::id())->orderBy('created_at', 'desc')->get())
-            ->with('statuses', CodeforcesStatus::where('handle', '=', Auth::user()->handle)->get());
+            ->with('statuses', CodeforcesStatus::where('handle', '=', Auth::user()->handle)->get())
+            ->with('contests', OnsiteContest::all());
     }
 
     public function getContest()

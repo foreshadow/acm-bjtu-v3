@@ -31,6 +31,9 @@ class OnsiteContest extends Model
             ->where('location1', '!=', '北京交通大学')
             ->groupBy(['location1'])
             ->get();
+        var_dump($collection1);
+        var_dump($collection2);
+        var_dump($collection1->merge($collection2)->sortByDesc('count'));
         return $collection1->merge($collection2)->sortByDesc('count');
     }
 

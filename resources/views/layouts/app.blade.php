@@ -54,14 +54,14 @@
                 </ul>
               </li>
               {{-- <li><a href="/blog">博客</a></li> --}}
-              <li><a href="/contest">比赛</a></li>
-              <li><a href="/user">用户</a></li>
               {{-- <li><a href="/report">反馈</a></li> --}}
               {{-- <li><a href="/pastebin">Pastebin</a></li> --}}
               <li><a href="/onsite">校赛报名</a></li>
               @role('bjtuacm')
               <li><a href="/problem">校赛出题</a></li>
               @endrole
+              <li><a href="/contest">比赛</a></li>
+              <li><a href="/user">用户</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -145,7 +145,7 @@
 
   <!-- jQuery -->
   <script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-  
+
   <!-- jQuery Extension: jQuery confirm -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.js"></script>

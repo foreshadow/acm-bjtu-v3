@@ -17,7 +17,7 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('user.index')->with('users', User::orderBy('active_at', 'desc')->paginate(12));
+        return view('user.index')->with('users', User::orderBy('active_at', 'desc')->paginate(30));
     }
 
     public function show($id)

@@ -123,6 +123,7 @@
                            @if ($bjtu) value="北京交通大学" @else value="{{ Auth::user()->location1 }}" @endif required>
                   </div>
                 </div>
+                @if ($bjtu)
                 <div class="form-group">
                   <label class="col-md-3 control-label" for="location2">学院</label>
                   <div class="col-md-9">
@@ -144,6 +145,7 @@
                     </select>
                   </div>
                 </div>
+                @endif
                 <div class="form-group">
                   <label class="col-md-3 control-label" for="email">邮箱</label>
                   <div class="col-md-9">
@@ -165,7 +167,7 @@
                 </div>
               </form>
             @else
-              请先登录
+              请先<a href="/login">登录</a>
             @endif
           @else
             {{-- out of register time --}}

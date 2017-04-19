@@ -124,6 +124,28 @@
     </div>
     <div class="panel panel-default">
       <div class="panel-heading">
+        <h3 class="panel-title">现场赛</h3>
+      </div>
+      <ul class="list-group">
+        @foreach ($contests as $contest)
+          <li class="list-group-item">
+            @if ($contest->registration())
+              <a href="/onsite/{{ $contest->id }}" class="btn btn-sm btn-success pull-right">@icon('ok')已报名</a>
+            @elseif (in(sqlnow(), $contest->begin_register_at, $contest->end_register_at))
+              <a href="/onsite/{{ $contest->id }}" class="btn btn-sm btn-primary pull-right">@icon('send')立即报名</a>
+            @endif
+            <h4 class="list-group-item-heading"><a href="/onsite/{{ $contest->id }}">{{ $contest->title }}</a></h4>
+            <div>
+              @icon('time'){{ $contest->begin_at }} ~ {{ $contest->end_at }}<br>
+              @icon('home'){{ $contest->location }}<br>
+              @icon('user'){{ $contest->registrants()->count() }}
+            </div>
+          </li>
+        @endforeach
+      </ul>
+    </div>
+    <div class="panel panel-default hidden">
+      <div class="panel-heading">
         <h3 class="panel-title">文章</h3>
       </div>
       <div class="panel-body">

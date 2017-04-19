@@ -180,14 +180,10 @@
           <h3 class="panel-title">统计</h3>
         </div>
         <div class="panel-body">
-          @foreach ($contest->group()->get() as $registration)
+          @foreach ($contest->group() as $registration)
             <div>
               {{ $registration->count }} 人 来自
-              @if ($registration->location1 == '北京交通大学')
-                <small>{{ $registration->location2 }}</small>
-              @else
-                <small>{{ $registration->location1 }}</small>
-              @endif
+              <small>{{ $registration->location }}</small>
             </div>
           @endforeach
         </div>

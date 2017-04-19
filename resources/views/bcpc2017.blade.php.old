@@ -1,0 +1,28 @@
+@extends('layouts.transparent')
+
+@section('content')
+<div class="bcpc2017">
+  <div class="container">
+    <img src="/img/bcpc2017/bjtu.png" style="height: 150px;">
+    <div class="content">
+      <span style="font-size: 40px;">第十一届</span><br>
+      <span style="font-size: 60px;">大学生程序设计竞赛</span><br>
+      <!-- <span style="font-size: 40px;">4月23日（第八周周日）13:00~18:00</span><br> -->
+      <!-- <span style="font-size: 40px;">第九教学楼 北401</span><br> -->
+      <a href="/onsite/1" class="btn btn-lg btn-success">立即报名</a>
+      <div class="timeline">
+        <div>
+          <span style="font-size: 40px;">现场赛</span><br>
+          <span style="font-size: 20px;">4月23日（第八周周日）13:00~18:00</span><br>
+          <span style="font-size: 20px;">第九教学楼 北401</span><br>
+        </div>
+        <div>
+          <span style="font-size: 40px;">宣讲会</span><br>
+          <span style="font-size: 20px;">4月16日（第七周周日）19:00~20:00</span><br>
+          <span style="font-size: 20px;">第九教学楼 北401</span><br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection

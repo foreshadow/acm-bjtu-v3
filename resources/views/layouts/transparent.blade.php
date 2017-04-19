@@ -23,7 +23,8 @@
 <body>
   <div id="app">
     @section('navbar')
-      <nav class="navbar navbar-default navbar-static-top">
+      <nav class="navbar navbar-transparent navbar-static-top">
+        <div class="navbar-shadow-box"></div>
         <div class="container">
           <div class="navbar-header">
 
@@ -45,23 +46,15 @@
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
               <li><a href="/">首页</a></li>
-              <li class="dropdown hidden">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">测评 <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="/oj">测评首页</a></li>
-                  <li><a href="/oj/problem">题目列表</a></li>
-                  <li><a href="/oj/submission">提交状态</a></li>
-                </ul>
-              </li>
               {{-- <li><a href="/blog">博客</a></li> --}}
+              {{-- <li><a href="/contest">比赛</a></li> --}}
+              {{-- <li><a href="/user">用户</a></li> --}}
               {{-- <li><a href="/report">反馈</a></li> --}}
               {{-- <li><a href="/pastebin">Pastebin</a></li> --}}
               <li><a href="/onsite">校赛报名</a></li>
               @role('bjtuacm')
               <li><a href="/problem">校赛出题</a></li>
               @endrole
-              <li><a href="/contest">比赛</a></li>
-              <li><a href="/user">用户</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->

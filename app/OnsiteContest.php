@@ -21,10 +21,17 @@ class OnsiteContest extends Model
 
     public function group()
     {
+        $query = $this->registrations()
+            ->select(DB::raw('count(*) as count, location2 as location'))
+            ->where('location1', '北京交通大学')
+            ->groupBy(['location2']);
         return $this->registrations()
-            ->select(DB::raw('count(*) as count, location1, location2'))
-            ->groupBy(['location1', 'location2'])
-            ->orderBy('count', 'desc');
+            ->select(DB::raw('count(*) as count, location1 as location'))
+            ->where('location1', '!=', '北京交通大学')
+            ->groupBy(['location1'])
+            ->union($query)
+            ->orderBy('count', 'desc')
+            ->get();
     }
 
     public function registration(User $user = null)

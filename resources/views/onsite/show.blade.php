@@ -69,13 +69,15 @@
                            value="{{ $registration->location1 }}" required readonly>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label class="col-md-3 control-label" for="location2">学院</label>
-                  <div class="col-md-9">
-                    <input id="location2" class="input-sm form-control" type="text" name="location2"
-                           value="{{ $registration->location2 }}" required readonly>
+                @if ($bjtu)
+                  <div class="form-group">
+                    <label class="col-md-3 control-label" for="location2">学院</label>
+                    <div class="col-md-9">
+                      <input id="location2" class="input-sm form-control" type="text" name="location2"
+                             value="{{ $registration->location2 }}" required readonly>
+                    </div>
                   </div>
-                </div>
+                @endif
                 <div class="form-group">
                   <label class="col-md-3 control-label" for="email">邮箱</label>
                   <div class="col-md-9">
@@ -119,32 +121,31 @@
                   <label class="col-md-3 control-label" for="location1">学校</label>
                   <div class="col-md-9">
                     <input id="location1" class="input-sm form-control" type="text" name="location1"
-                           placeholder="北京交通大学"
-                           @if ($bjtu) value="北京交通大学" @else value="{{ Auth::user()->location1 }}" @endif required>
+                           @if ($bjtu) placeholder="北京交通大学" value="北京交通大学" @else value="{{ Auth::user()->location1 }}" @endif required>
                   </div>
                 </div>
                 @if ($bjtu)
-                <div class="form-group">
-                  <label class="col-md-3 control-label" for="location2">学院</label>
-                  <div class="col-md-9">
-                    <select id="location2" class="input-sm form-control" type="text" name="location2" required>
-                      <option></option>
-                      <option>计算机与信息技术学院</option>
-                      <option>软件学院</option>
-                      <option>电子信息工程学院</option>
-                      <option>经济管理学院</option>
-                      <option>交通运输学院</option>
-                      <option>土木建筑工程学院</option>
-                      <option>机械与电子控制工程学院</option>
-                      <option>电气工程学院</option>
-                      <option>理学院</option>
-                      <option>马克思主义学院</option>
-                      <option>语言与传播学院</option>
-                      <option>建筑与艺术学院</option>
-                      <option>法学院</option>
-                    </select>
+                  <div class="form-group">
+                    <label class="col-md-3 control-label" for="location2">学院</label>
+                    <div class="col-md-9">
+                      <select id="location2" class="input-sm form-control" type="text" name="location2" required>
+                        <option></option>
+                        <option>计算机与信息技术学院</option>
+                        <option>软件学院</option>
+                        <option>电子信息工程学院</option>
+                        <option>经济管理学院</option>
+                        <option>交通运输学院</option>
+                        <option>土木建筑工程学院</option>
+                        <option>机械与电子控制工程学院</option>
+                        <option>电气工程学院</option>
+                        <option>理学院</option>
+                        <option>马克思主义学院</option>
+                        <option>语言与传播学院</option>
+                        <option>建筑与艺术学院</option>
+                        <option>法学院</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
                 @endif
                 <div class="form-group">
                   <label class="col-md-3 control-label" for="email">邮箱</label>

@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('board', function() {
+    return view('bcpc2017-board');
+});
+
 Route::get('/', function () {
     return App::make('App\Http\Controllers\RootController')->getIndex();
 });
